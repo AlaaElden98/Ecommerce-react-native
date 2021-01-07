@@ -7,7 +7,6 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Icon name="accessibility" style={{fontSize:50}}/> 
-      <Text>asdad</Text>
     </View>
   );
 }
