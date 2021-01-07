@@ -4,8 +4,8 @@ const incDecBtnColor = "#bbb";
 
 const styles = StyleSheet.create({
   wrapper: {
-    minWidth: 0,
-    minHeight: 0,
+    minWidth: 200,
+    minHeight: 50,
   },
   increaseDecreaseContainer: {
     flexDirection: "row",

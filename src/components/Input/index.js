@@ -1,5 +1,5 @@
-import React from "react";
-import { View, TextInput, StyleSheet, Text } from "react-native";
+import React from 'react';
+import {View, TextInput, StyleSheet, Text} from 'react-native';
 
 export const Input = (props) => {
   const {
@@ -24,15 +24,14 @@ export const Input = (props) => {
     <View
       style={[
         border && {
-          borderColor: borderColor || "#bbb",
+          borderColor: borderColor || '#bbb',
           borderRadius: borderRadius || 5,
           borderWidth: borderWidth || 1,
         },
         wrapperStyle,
-      ]}
-    >
-      {stacked && <Text>{placeholder}</Text>}
-      <View style={{ flexDirection: "row" }}>
+      ]}>
+      {stacked && <Text style={{color: '#bbb'}}>{placeholder}</Text>}
+      <View style={{flexDirection: 'row'}}>
         {renderIconLeft && (
           <View style={[styles.iconWrapper, iconWrapper]}>
             {renderIconLeft()}
@@ -40,10 +39,15 @@ export const Input = (props) => {
         )}
         <TextInput
           {...rest}
-          placeholder={stacked ? "" : placeholder}
-          style={
-            ([{ padding: 0, textAlign: placeholderPosition || "left" }], style)
-          }
+          placeholder={stacked ? '' : placeholder}
+          style={[
+            {
+              flex: 1,
+              padding: 0,
+              textAlign: placeholderPosition || 'left',
+            },
+            style,
+          ]}
         />
         {renderIconRight && (
           <View style={[styles.iconWrapper, iconWrapper]}>
@@ -55,7 +59,7 @@ export const Input = (props) => {
         <View
           style={{
             height: underlinedHeight || 1,
-            backgroundColor: underlinedColor || "#bbb",
+            backgroundColor: underlinedColor || '#bbbbbb80',
           }}
         />
       )}
@@ -64,7 +68,7 @@ export const Input = (props) => {
 };
 const styles = StyleSheet.create({
   iconWrapper: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

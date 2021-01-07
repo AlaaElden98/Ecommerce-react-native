@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Text } from 'react-native'
-import { formatTimer } from '../utilis/helperFunctions'
+import { formatTimer } from '../../utils/helperFunctions'
 
 export function Timer(props) {
 

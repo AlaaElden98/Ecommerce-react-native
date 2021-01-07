@@ -1,14 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {AddToCartButton} from './src/components/AddToCartButton'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import {OrdersScreen} from './src/screens/Orders';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Icon name="accessibility" style={{fontSize:50}}/> 
-    </View>
-  );
+  return <OrdersScreen />;
+
 }
 
 const styles = StyleSheet.create({
@@ -16,6 +12,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center', 
-  }, 
+    justifyContent: 'center',
+  },
 });

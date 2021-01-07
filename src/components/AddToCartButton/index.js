@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { Text, View } from "react-native";
-import { AppButton } from "../AppButton";
-import styles from "./styles";
+import React, {useState} from 'react';
+import {Text, View} from 'react-native';
+import {AppButton} from '../AppButton';
+import styles from './styles';
 
 export function AddToCartButton(props) {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(props? 1 : 0);
+
 
   const increamentQuantityHandler = () => {
     setQuantity(quantity + 1);
@@ -19,13 +20,14 @@ export function AddToCartButton(props) {
       <AppButton
         onPress={increamentQuantityHandler}
         title="ADD TO CART"
+        wrapperStyle={styles.wrapper}
       />
     );
   };
 
   const renderIncreamentDecreamentButton = () => {
     return (
-      <View style={styles.increaseDecreaseContainer}>
+      <View style={[styles.increaseDecreaseContainer, styles.wrapper]}>
         <Text style={styles.plusMinus} onPress={decreamentQuantityHandler}>
           -
         </Text>
@@ -36,12 +38,8 @@ export function AddToCartButton(props) {
       </View>
     );
   };
-
-  return (
-    <View>
-      {quantity === 0
-        ? renderInitialButton()
-        : renderIncreamentDecreamentButton()}
-    </View>
-  );
+  
+  return quantity === 0
+    ? renderInitialButton()
+    : renderIncreamentDecreamentButton();
 }
