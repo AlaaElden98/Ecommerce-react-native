@@ -6,14 +6,11 @@ const styles = ScaledSheet.create({
   },
   wrapper: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
 		alignItems: 'center',
 		padding:'10@s'
   },
-  wrapperWrapper: {
-    flex: 1,
-    justifyContent: 'flex-end',
-	},
+
 	totalText:{
 		fontSize:'18@s'
 	},
