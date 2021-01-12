@@ -1,10 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {OrdersScreen} from './src/screens/Orders';
-import {CartScreen} from './src/screens/Cart'
+import {CartScreen} from './src/screens/Cart';
+import {NavigationContainer} from '@react-navigation/native';
 export default function App() {
-  return <OrdersScreen />;
-
+  return (
+    <NavigationContainer>
+      <OrdersScreen />
+    </NavigationContainer> 
+  );
 }
 
 const styles = StyleSheet.create({
