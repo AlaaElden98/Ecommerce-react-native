@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, SafeAreaView} from 'react-native';
 import {AppButton} from '../../components/AppButton';
 import {CURRENCY} from '../../utils/constants';
 import styles from './styles';
@@ -43,10 +43,10 @@ function renderButton() {
 
 export function CheckOutScreen(props) {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {renderAddressSection()}
       {renderOrderCostSection()}
       {renderButton()}
-    </View>
+    </SafeAreaView>
   );
 }

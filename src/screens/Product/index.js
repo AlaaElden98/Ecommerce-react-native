@@ -1,19 +1,19 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, SafeAreaView} from 'react-native';
 import {Price} from '../../components/Price';
-import {dummyProduct} from '../../utils/dummyData';
+import {dummyProduct1} from '../../utils/dummyData';
 import {AddToCartButton} from '../../components/AddToCartButton';
 import styles from './styles';
 import {IonIcon} from '../../components/IonIcons';
 function getProduct(productId) {
-  return dummyProduct;
+  return dummyProduct1;
 }
 export function ProductScreen(props) {
   const {productId} = props;
   const product = getProduct(productId);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Image source={{uri: product.imageUrl}} style={styles.image} />
       <View style={styles.iconTitleWrapper}>
         <IonIcon name={'arrow-back'} style={styles.backIcon} />
@@ -29,6 +29,6 @@ export function ProductScreen(props) {
           <AddToCartButton />
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

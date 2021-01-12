@@ -1,16 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {OrdersScreen} from './src/screens/Orders';
-import {CartScreen} from './src/screens/Cart';
-import {NavigationContainer} from '@react-navigation/native';
+import {AppContainer} from './src/navigation';
 export default function App() {
-  return (
-    <NavigationContainer>
-      <OrdersScreen />
-    </NavigationContainer> 
-  );
+  return <AppContainer isAuthanticated={true} />;
 }
-
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1,

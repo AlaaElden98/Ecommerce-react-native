@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, FlatList, ScrollView} from 'react-native';
 import {Category} from '../../components/Category';
-import {ProductsList} from '../../components/ProductsList'
+import {ProductsList} from '../../components/ProductsList';
 import {dummyCategories, dummyProducts} from '../../utils/dummyData';
 import styles from './styles';
 
@@ -16,10 +16,10 @@ function renderCategoriesList(categories) {
 export function HomeScreen(props) {
   return (
     <ScrollView style={styles.container}>
-    <Text style={styles.headerText}>Categories</Text>
+      <Text style={styles.headerText}>Categories</Text>
       {renderCategoriesList(dummyCategories)}
       <Text style={styles.headerText}>Products</Text>
-      <ProductsList data={dummyProducts}/>
+      <ProductsList data={dummyProducts} />
     </ScrollView>
   );
 }
