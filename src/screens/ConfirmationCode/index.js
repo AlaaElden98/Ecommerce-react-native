@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, SafeAreaView} from 'react-native';
 import {AppButton} from '../../components/AppButton';
 import {Input} from '../../components/Input';
 import styles from './styles';
+import {useInput} from '../../utils/useInput';
 
-export function ConfirmationCodeScreen() {
+export function ConfirmationCodeScreen(props) {
+  const [input, updateInput] = useInput('', [{key: 'isConfirmationCode'}]);
+
+  const doneHandler = () => {
+    if (!input.isValid) {
+      alert('the confirmation code is not correct');
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.textWrapper}>
@@ -16,9 +24,12 @@ export function ConfirmationCodeScreen() {
         placeholder="__ __ __ __"
         wrapperStyle={styles.inputWrapper}
         placeholderPosition="center"
+        onChangeText={updateInput}
+        onSubmitEditing={doneHandler}
+        keyboardType="numeric"
       />
       <View style={styles.buttonWrapper}>
-        <AppButton title="DONE" />
+        <AppButton title="DONE" onPress={doneHandler} />
       </View>
     </SafeAreaView>
   );

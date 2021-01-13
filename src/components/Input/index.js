@@ -1,5 +1,7 @@
 import React from 'react';
 import {View, TextInput, StyleSheet, Text} from 'react-native';
+import {IonIcon} from '../IonIcons';
+import {TINT_COLOR} from '../../utils/colors';
 
 export const Input = (props) => {
   const {
@@ -18,6 +20,9 @@ export const Input = (props) => {
     style,
     wrapperStyle,
     iconWrapper,
+    showValidationFeedback,
+    isValid,
+    toched,
     ...rest
   } = props;
   return (
@@ -53,6 +58,12 @@ export const Input = (props) => {
           <View style={[styles.iconWrapper, iconWrapper]}>
             {renderIconRight()}
           </View>
+        )}
+        {showValidationFeedback && toched && (
+          <IonIcon
+            style={{fontSize: 25, color: isValid ? TINT_COLOR : 'red'}}
+            name={isValid ? 'checkmark' : 'close'}
+          />
         )}
       </View>
       {(underlined || stacked) && (
