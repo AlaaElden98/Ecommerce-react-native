@@ -3,15 +3,15 @@ import {View, Text, SafeAreaView} from 'react-native';
 import {IonIcon} from '../../components/IonIcons';
 import styles from './styles';
 import {PlatFormTouchable} from '../../components/PlatFormTouchable';
-
-function renderInfoSection() {
+import {connect} from 'react-redux';
+function renderInfoSection(user) {
   return (
     <View style={styles.infoSection}>
       <IonIcon name="person" style={styles.personIcon} />
       <View style={styles.verticalLine} />
       <View>
-        <Text style={styles.infoText}>Some Person</Text>
-        <Text style={styles.infoText}>010464747446</Text>
+        <Text style={styles.infoText}>{user.name || 'Edit your info'}</Text>
+        <Text style={styles.infoText}>{user.phone}</Text>
       </View>
     </View>
   );
@@ -47,15 +47,18 @@ function renderButtonsSection(navigation) {
   );
 }
 
-export function AccountScreen(props) {
-  const {navigation} = props;
+function AccountScreen(props) {
+  const {navigation, user} = props;
+  console.log('AccountScreenUser', user);
 
   return (
     <SafeAreaView style={styles.outer}>
       <View style={styles.container}>
-        {renderInfoSection()}
+        {renderInfoSection(user)}
         {renderButtonsSection(navigation)}
       </View>
     </SafeAreaView>
   );
 }
+const mapStateToProps = (state) => ({user: state.auth.user});
+export default connect(mapStateToProps)(AccountScreen);

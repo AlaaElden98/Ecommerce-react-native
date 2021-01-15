@@ -3,14 +3,14 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {HomeScreen} from '../screens/Home';
 import {SearchScreen} from '../screens/Search';
 import {CartScreen} from '../screens/Cart';
-import {AccountScreen} from '../screens/Account';
+import AccountScreen from '../screens/Account';
 import {IonIcon} from '../components/IonIcons';
 import {Text} from 'react-native';
 import {TINT_COLOR} from '../utils/colors';
 import {HomeStack} from './HomeStack';
 import {CartStack} from './CartStack';
 import {SearchStack} from './SearchStack';
-import {AccountStack} from './AccountStack'
+import {AccountStack} from './AccountStack';
 
 const Tabs = createBottomTabNavigator();
 
