@@ -7,11 +7,14 @@ import {useInput} from '../../utils/useInput';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TOKEN_KEY, USER_KEY} from '../../utils/constants';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 function ConfirmationCodeScreen(props) {
   const [input, updateInput] = useInput('', [{key: 'isConfirmationCode'}]);
   const [isLoading, setIsLoading] = React.useState(false);
-  const {setToken, setUser} = props;
+
+  const dispatch = useDispatch();
+  const setToken = (token) => dispatch({type: 'SET_TOKEN', payload: {token}});
+  const setUser = (user) => dispatch({type: 'SET_USER', payload: {user}});
 
   const {phone} = props.route.params;
   const doneHandler = () => {
@@ -63,8 +66,4 @@ function ConfirmationCodeScreen(props) {
     </SafeAreaView>
   );
 }
-const mapDispatchToProps = (dispatch) => ({
-  setToken: (token) => dispatch({type: 'SET_TOKEN', payload: {token}}),
-  setUser: (user) => dispatch({type: 'SET_USER', payload: {user}}),
-});
-export default connect(null, mapDispatchToProps)(ConfirmationCodeScreen);
+export default ConfirmationCodeScreen;
