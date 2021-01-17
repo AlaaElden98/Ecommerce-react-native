@@ -1,49 +1,69 @@
-import {
-  SET_TOKEN,
-  SET_USER,
-  SIGNIN_SUCCESS,
-  SIGNIN_START,
-  SIGNIN_FAILURE,
-} from '../actions/ActionTypes';
+import * as ActionTypes from '../actions/ActionTypes';
+
 const initialState = {
   token: '',
   user: null,
   isSigningIn: false,
   signInSuccess: null,
   signInFailure: null,
+  isConfirmingCode: false,
+  confirmCodeSuccess: null,
+  confirmCodeFailure: null,
 };
 
-function authReducer(currentState = initialState, action) {
+function authReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_TOKEN:
+    case ActionTypes.SET_TOKEN:
       return {
-        ...currentState,
+        ...state,
         token: action.payload.token,
       };
-    case SET_USER:
       return {
-        currentState,
+        ...state,
         user: action.payload.user,
       };
-    case SIGNIN_START:
+    case ActionTypes.SIGNIN_START:
       return {
-        ...currentState,
+        ...state,
         isSigningIn: true,
       };
-    case SIGNIN_SUCCESS:
+
+    case ActionTypes.SIGNIN_SUCCESS:
       return {
-        ...currentState,
+        ...state,
         isSigningIn: false,
         signInSuccess: {},
       };
-    case SIGNIN_FAILURE:
+
+    case ActionTypes.SIGNIN_FAILURE:
       return {
-        ...currentState,
+        ...state,
         isSigningIn: false,
         signInFailure: {},
       };
+
+    case ActionTypes.CONFIRM_CODE_START:
+      return {
+        ...state,
+        isConfirmingCode: true,
+      };
+
+    case ActionTypes.CONFIRM_CODE_SUCCESS:
+      return {
+        ...state,
+        isSigningIn: false,
+        confirmCodeSuccess: {},
+      };
+
+    case ActionTypes.CONFIRM_CODE_FAILURE:
+      return {
+        ...state,
+        isSigningIn: false,
+        confirmCodeFailure: {},
+      };
+
     default:
-      return currentState;
+      return state;
   }
 }
 export default authReducer;

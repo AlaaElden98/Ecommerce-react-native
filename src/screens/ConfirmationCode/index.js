@@ -4,39 +4,26 @@ import {AppButton} from '../../components/AppButton';
 import {Input} from '../../components/Input';
 import styles from './styles';
 import {useInput} from '../../utils/useInput';
-import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {TOKEN_KEY, USER_KEY} from '../../utils/constants';
-import {useDispatch} from 'react-redux';
-import {setToken, setUser} from '../../redux/actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {confirmCode} from '../../redux/actions';
+import {useUpdateEffect} from '../../utils/useUpdateEffect';
+import {showError} from '../../utils/helperFunctions';
+
 function ConfirmationCodeScreen(props) {
+  const {phone} = props.route.params;
   const [input, updateInput] = useInput('', [{key: 'isConfirmationCode'}]);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const isLoading = useSelector((state) => state.auth.isConfirmingCode);
+  const failure = useSelector((state) => state.auth.confirmCodeFilure);
 
   const dispatch = useDispatch();
 
-  const {phone} = props.route.params;
+  useUpdateEffect(() => {
+    showError('Confirming failure');
+  }, [failure]);
+
   const doneHandler = () => {
     if (input.isValid) {
-      setIsLoading(true);
-      axios
-        .post('/verify/validate', {phone: phone, code: input.value})
-        .then((response) => {
-          console.log(response.data);
-          const {token, userData} = response.data;
-          axios.defaults.headers.Authorization = 'Bearer ' + token;
-          dispatch(setToken(token));
-          dispatch(setUser(userData));
-          AsyncStorage.setItem(TOKEN_KEY, token);
-          AsyncStorage.setItem(USER_KEY, JSON.stringify(userData));
-          console.log(userData);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
+      dispatch(confirmCode(phone, input.value));
     }
   };
   return (

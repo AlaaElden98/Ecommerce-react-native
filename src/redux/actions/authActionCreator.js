@@ -1,32 +1,64 @@
-import {
-  SET_TOKEN,
-  SET_USER,
-  SIGNIN_START,
-  SIGNIN_SUCCESS,
-  SIGNIN_FAILURE,
-} from './ActionTypes';
+import * as ActionTypes from './ActionTypes';
 import axios from 'axios';
+import {USER_KEY, TOKEN_KEY} from '../../utils/constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const setToken = (token) => ({type: SET_TOKEN, payload: {token}});
-export const setUser = (user) => ({type: SET_USER, payload: {user}});
+export const setToken = (token) => ({
+  type: ActionTypes.SET_TOKEN,
+  payload: {token},
+});
 
-const signInStart = () => ({type: SIGNIN_START});
-const signInSuccess = () => ({type: SIGNIN_SUCCESS});
-const signInFailure = () => ({type: SIGNIN_FAILURE});
+export const setUser = (user) => ({
+  type: ActionTypes.SET_USER,
+  payload: {user},
+});
+
+const signInStart = () => ({type: ActionTypes.SIGNIN_START});
+
+const signInSuccess = () => ({type: ActionTypes.SIGNIN_SUCCESS});
+
+const signInFaliure = () => ({type: ActionTypes.SIGNIN_FAILURE});
+
+const confirmCodeStart = () => ({type: ActionTypes.CONFIRM_CODE_START});
+
+const confirmCodeSuccess = () => ({type: ActionTypes.CONFIRM_CODE_SUCCESS});
+
+const confirmCodeFaliure = () => ({type: ActionTypes.CONFIRM_CODE_FAILURE});
 
 export const signIn = (phone) => {
   return (dispatch, getState) => {
     dispatch(signInStart());
     axios
       .post('/verify', {phone})
-      .then((response) => {
+      .then((res) => {
         dispatch(signInSuccess());
-        console.log(response.data);
-        //navigation.navigate('ConfirmationCodeScreen', {phone});
+        console.log(res.data);
       })
-      .catch((error) => {
-        dispatch(signInFailure());
-        console.log('err', error);
+      .catch((err) => {
+        dispatch(signInFaliure);
+        console.log('error', err);
+      });
+  };
+};
+
+export const confirmCode = (phone, code) => {
+  return (dispatch, getState) => {
+    dispatch(confirmCodeStart());
+    axios
+      .post('/verify/validate', {phone, code})
+      .then((res) => {
+        dispatch(confirmCodeSuccess());
+        console.log(res.data);
+        const {token, userData} = res.data;
+        axios.defaults.headers.Authorization = 'Bearer ' + token;
+        dispatch(setToken(token));
+        dispatch(setUser(userData));
+        AsyncStorage.setItem(TOKEN_KEY, token);
+        AsyncStorage.setItem(USER_KEY, JSON.stringify(userData));
+      })
+      .catch((err) => {
+        dispatch(confirmCodeFaliure());
+        console.log('error', err);
       });
   };
 };

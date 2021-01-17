@@ -7,6 +7,9 @@ import {AppButton} from '../../components/AppButton';
 import {useInput} from '../../utils/useInput';
 import {useDispatch, useSelector} from 'react-redux';
 import {signIn} from '../../redux/actions';
+import {useUpdateEffect} from '../../utils/useUpdateEffect';
+import {showError} from '../../utils/helperFunctions';
+
 function renderIcon() {
   return <Icon name="call-outline" style={styles.icon} />;
 }
@@ -14,8 +17,18 @@ function renderIcon() {
 export function SignInScreen(props) {
   const {navigation} = props;
   const isLoading = useSelector((state) => state.auth.isSigningIn);
+  const success = useSelector((state) => state.auth.signInSuccess);
+  const error = useSelector((state) => state.auth.signInError);
   const dispatch = useDispatch();
   const [input, updateInput] = useInput('', [{key: 'isPhone'}]);
+
+  useUpdateEffect(() => {
+    navigation.navigate('ConfirmationCodeScreen', {phone: input.value});
+  }, [success]);
+
+  useUpdateEffect(() => {
+    showError('Signin Failed');
+  }, [error]);
 
   const doneHandler = () => {
     if (input.isValid) {
