@@ -5,31 +5,21 @@ import styles from './styles';
 import {Input} from '../../components/Input';
 import {AppButton} from '../../components/AppButton';
 import {useInput} from '../../utils/useInput';
-import axios from 'axios';
+import {useDispatch, useSelector} from 'react-redux';
+import {signIn} from '../../redux/actions';
 function renderIcon() {
   return <Icon name="call-outline" style={styles.icon} />;
 }
 
 export function SignInScreen(props) {
   const {navigation} = props;
-
+  const isLoading = useSelector((state) => state.auth.isSigningIn);
+  const dispatch = useDispatch();
   const [input, updateInput] = useInput('', [{key: 'isPhone'}]);
-  const [isLoading, setIsLoading] = React.useState(false);
+
   const doneHandler = () => {
     if (input.isValid) {
-      setIsLoading(true);
-      axios
-        .post('/verify', {phone: input.value})
-        .then((response) => {
-          console.log(response.data);
-          navigation.navigate('ConfirmationCodeScreen', {phone: input.value});
-        })
-        .catch((error) => {
-          console.log('err', error);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
+      dispatch(signIn(input.value));
     }
   };
   return (
