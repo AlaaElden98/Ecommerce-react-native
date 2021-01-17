@@ -3,20 +3,20 @@ const initialState = {
   user: null,
 };
 
-function authReducer(prevState = initialState, action) {
+function authReducer(currentState = initialState, action) {
   switch (action.type) {
     case 'SET_TOKEN':
       return {
-        ...prevState,
+        ...currentState,
         token: action.payload.token,
       };
     case 'SET_USER':
       return {
-        ...prevState,
+        ...currentState,
         user: action.payload.user,
       };
     default:
-      return prevState;
+      return currentState;
   }
 }
 export default authReducer;

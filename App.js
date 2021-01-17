@@ -13,9 +13,9 @@ function App(props) {
 
   React.useEffect(() => {
     //AsyncStorage.clear();
-    AsyncStorage.getItem(TOKEN_KEY).then((val) => {
-      dispatch(setToken(val));
-      axios.defaults.headers.Authorization = 'Bearer ' + val;
+    AsyncStorage.getItem(TOKEN_KEY).then((tokenValue) => {
+      dispatch(setToken(tokenValue));
+      axios.defaults.headers.Authorization = 'Bearer ' + tokenValue;
       AsyncStorage.getItem(USER_KEY).then((user) => {
         dispatch(setUser(JSON.parse(user)));
       });
