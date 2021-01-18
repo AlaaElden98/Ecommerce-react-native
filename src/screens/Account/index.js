@@ -3,7 +3,8 @@ import {View, Text, SafeAreaView} from 'react-native';
 import {IonIcon} from '../../components/IonIcons';
 import styles from './styles';
 import {PlatFormTouchable} from '../../components/PlatFormTouchable';
-import {connect, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {logOut} from '../../redux/actions';
 function renderInfoSection(user) {
   return (
     <View style={styles.infoSection}>
@@ -30,7 +31,7 @@ function renderButton(iconName, title, onPress) {
   );
 }
 
-function renderButtonsSection(navigation) {
+function renderButtonsSection(navigation, onDispatchLogOut) {
   return (
     <View>
       {renderButton('person', 'Profile', () =>
@@ -42,7 +43,7 @@ function renderButtonsSection(navigation) {
       {renderButton('cart', 'Previous Orders', () =>
         navigation.navigate('OrdersScreen'),
       )}
-      {renderButton('log-out', 'Log Out', () => {})}
+      {renderButton('log-out', 'Log Out', onDispatchLogOut)}
     </View>
   );
 }
@@ -50,12 +51,13 @@ function renderButtonsSection(navigation) {
 function AccountScreen(props) {
   const {navigation} = props;
   const user = useSelector((state) => state.auth.user);
-  console.log('AccountScreenUser', user);
+  const dispatch = useDispatch();
+  const onDispatchLogOut = () => dispatch(logOut());
   return (
     <SafeAreaView style={styles.outer}>
       <View style={styles.container}>
         {renderInfoSection(user)}
-        {renderButtonsSection(navigation)}
+        {renderButtonsSection(navigation, onDispatchLogOut)}
       </View>
     </SafeAreaView>
   );

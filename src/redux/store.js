@@ -1,14 +1,11 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux';
-import authReducer from './reducers/authReducer';
+import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import Reactotron from '../../ReactotronConfig';
+import appReducer from './reducers';
 
-const rootReducer = combineReducers({
-  auth: authReducer,
-});
 const store = createStore(
-  rootReducer,
+  appReducer,
   composeWithDevTools(applyMiddleware(thunk), Reactotron.createEnhancer()),
 );
 

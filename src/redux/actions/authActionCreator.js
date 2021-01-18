@@ -6,6 +6,7 @@ import {
   UNEXPECTED_ERROR_CODE,
   WRONG_CODE_ERROR_CODE,
 } from '../../utils/errorCodes';
+
 export const setToken = (token) => ({
   type: ActionTypes.SET_TOKEN,
   payload: {token},
@@ -20,7 +21,10 @@ const signInStart = () => ({type: ActionTypes.SIGNIN_START});
 
 const signInSuccess = () => ({type: ActionTypes.SIGNIN_SUCCESS});
 
-const signInFaliure = () => ({type: ActionTypes.SIGNIN_FAILURE});
+const signInFailure = (errorCode) => ({
+  type: ActionTypes.SIGNIN_FAILURE,
+  payload: {errorCode},
+});
 
 const confirmCodeStart = () => ({type: ActionTypes.CONFIRM_CODE_START});
 
@@ -31,6 +35,10 @@ const confirmCodeFaliure = (errorCode) => ({
   payload: {errorCode},
 });
 
+export const clearReduxData = () => ({
+  type: ActionTypes.CLEAR_REDUX_DATA,
+});
+
 export const signIn = (phone) => {
   return (dispatch, getState) => {
     dispatch(signInStart());
@@ -38,10 +46,9 @@ export const signIn = (phone) => {
       .post('/verify', {phone})
       .then((res) => {
         dispatch(signInSuccess());
-        console.log(res.data);
       })
       .catch((err) => {
-        dispatch(signInFaliure());
+        dispatch(signInFailure(UNEXPECTED_ERROR_CODE));
       });
   };
 };
@@ -67,5 +74,13 @@ export const confirmCode = (phone, code) => {
           : UNEXPECTED_ERROR_CODE;
         dispatch(confirmCodeFaliure(errorCode));
       });
+  };
+};
+
+export const logOut = () => {
+  return (dispatch, getState) => {
+    axios.defaults.headers.Authorization = undefined;
+    AsyncStorage.clear();
+    dispatch(clearReduxData());
   };
 };
