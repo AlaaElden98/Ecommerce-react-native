@@ -5,7 +5,6 @@ export function useUpdateEffect(callback, dependencies) {
 
   React.useEffect(() => {
     if (isInitialMount.current) {
-      console.log('its true!!!');
       isInitialMount.current = false;
     } else {
       callback();

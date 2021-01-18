@@ -2,7 +2,10 @@ import * as ActionTypes from './ActionTypes';
 import axios from 'axios';
 import {USER_KEY, TOKEN_KEY} from '../../utils/constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import {
+  UNEXPECTED_ERROR_CODE,
+  WRONG_CODE_ERROR_CODE,
+} from '../../utils/errorCodes';
 export const setToken = (token) => ({
   type: ActionTypes.SET_TOKEN,
   payload: {token},
@@ -23,7 +26,10 @@ const confirmCodeStart = () => ({type: ActionTypes.CONFIRM_CODE_START});
 
 const confirmCodeSuccess = () => ({type: ActionTypes.CONFIRM_CODE_SUCCESS});
 
-const confirmCodeFaliure = () => ({type: ActionTypes.CONFIRM_CODE_FAILURE});
+const confirmCodeFaliure = (errorCode) => ({
+  type: ActionTypes.CONFIRM_CODE_FAILURE,
+  payload: {errorCode},
+});
 
 export const signIn = (phone) => {
   return (dispatch, getState) => {
@@ -35,8 +41,7 @@ export const signIn = (phone) => {
         console.log(res.data);
       })
       .catch((err) => {
-        dispatch(signInFaliure);
-        console.log('error', err);
+        dispatch(signInFaliure());
       });
   };
 };
@@ -57,8 +62,10 @@ export const confirmCode = (phone, code) => {
         AsyncStorage.setItem(USER_KEY, JSON.stringify(userData));
       })
       .catch((err) => {
-        dispatch(confirmCodeFaliure());
-        console.log('error', err);
+        const errorCode = err.message.includes('401')
+          ? WRONG_CODE_ERROR_CODE
+          : UNEXPECTED_ERROR_CODE;
+        dispatch(confirmCodeFaliure(errorCode));
       });
   };
 };
