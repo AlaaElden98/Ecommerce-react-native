@@ -5,10 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TOKEN_KEY, USER_KEY} from './src/utils/constants';
 import {useSelector, useDispatch} from 'react-redux';
 import {setToken, setUser} from './src/redux/actions';
-
 function App(props) {
   const dispatch = useDispatch();
-
   const token = useSelector((state) => state.auth.token);
 
   React.useEffect(() => {
