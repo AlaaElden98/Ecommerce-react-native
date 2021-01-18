@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {signIn} from '../../redux/actions';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import {showError} from '../../utils/helperFunctions';
-
+import {errorCodeMessageMapper} from '../../utils/errorCodes';
 function renderIcon() {
   return <Icon name="call-outline" style={styles.icon} />;
 }
@@ -18,7 +18,7 @@ export function SignInScreen(props) {
   const {navigation} = props;
   const isLoading = useSelector((state) => state.auth.isSigningIn);
   const success = useSelector((state) => state.auth.signInSuccess);
-  const error = useSelector((state) => state.auth.signInError);
+  const failure = useSelector((state) => state.auth.signInFailure);
   const dispatch = useDispatch();
   const [input, updateInput] = useInput('', [{key: 'isPhone'}]);
 
@@ -27,8 +27,9 @@ export function SignInScreen(props) {
   }, [success]);
 
   useUpdateEffect(() => {
-    showError('Signin Failed');
-  }, [error]);
+    console.log(failure);
+    showError(errorCodeMessageMapper[failure.errorCode]);
+  }, [failure]);
 
   const doneHandler = () => {
     if (input.isValid) {
@@ -53,6 +54,7 @@ export function SignInScreen(props) {
         showValidationFeedback
         toched={input.touched}
         isValid={input.isValid}
+        editable={!isLoading}
       />
       <View style={styles.buttonWrapper}>
         <AppButton
