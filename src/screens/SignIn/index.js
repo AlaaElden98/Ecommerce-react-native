@@ -18,7 +18,7 @@ export function SignInScreen(props) {
   const {navigation} = props;
   const isLoading = useSelector((state) => state.auth.isSigningIn);
   const success = useSelector((state) => state.auth.signInSuccess);
-  // const failure = useSelector((state) => state.auth.signInFailure);
+  const failure = useSelector((state) => state.auth.signInFailure);
   const dispatch = useDispatch();
   const [input, updateInput] = useInput('', [{key: 'isPhone'}]);
 
@@ -26,10 +26,10 @@ export function SignInScreen(props) {
     navigation.navigate('ConfirmationCodeScreen', {phone: input.value});
   }, [success]);
 
-  // useUpdateEffect(() => {
-  //   console.log(failure);
-  //   showError(errorCodeMessageMapper[failure.errorCode]);
-  // }, [failure]);
+  useUpdateEffect(() => {
+    console.log(failure);
+    showError(errorCodeMessageMapper[failure.errorCode]);
+  }, [failure]);
 
   const doneHandler = () => {
     if (input.isValid) {

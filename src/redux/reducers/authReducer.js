@@ -1,4 +1,5 @@
 import * as ActionTypes from '../actions/ActionTypes';
+import {highOrderReducer} from 'api-request-biolerplate-actions';
 
 const initialState = {
   token: '',
@@ -9,7 +10,7 @@ const initialState = {
   isConfirmingCode: false,
   confirmCodeSuccess: null,
   confirmCodeFailure: null,
-  updateUserNameSuccess: null,
+  updateNameSuccess: null,
 };
 
 function authReducer(state = initialState, action) {
@@ -63,14 +64,27 @@ function authReducer(state = initialState, action) {
         isConfirmingCode: false,
         confirmCodeFailure: {errorCode: action.payload.errorCode},
       };
-    case ActionTypes.UPDATE_USER_NAME:
+    case 'SUCCESS_' + 'changeName':
       return {
         ...state,
-        updateUserNameSuccess: {},
+        updateNameSuccess: {},
       };
 
     default:
       return state;
   }
 }
-export default authReducer;
+export default highOrderReducer(
+  initialState,
+  [
+    {
+      requestEndPoint: 'user/get-data',
+      baseActionType: 'userData',
+    },
+    {
+      requestEndPoint: 'user/change-name',
+      baseActionType: 'changeName',
+    },
+  ],
+  authReducer,
+);

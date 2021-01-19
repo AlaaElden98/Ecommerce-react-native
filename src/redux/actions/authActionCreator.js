@@ -38,10 +38,6 @@ export const clearReduxData = () => ({
   type: ActionTypes.CLEAR_REDUX_DATA,
 });
 
-export const updateUserNameSuccess = () => ({
-  type: ActionTypes.UPDATE_USER_NAME,
-});
-
 export const signIn = (phone) => {
   return (dispatch, getState) => {
     dispatch(signInStart());
@@ -84,7 +80,6 @@ export const updateUserName = (name) => {
   return (dispatch, getState) => {
     axios.put('/user/change-name', {name}).then((res) => {
       dispatch(getUserData());
-      dispatch(updateUserNameSuccess());
     });
   };
 };

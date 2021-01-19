@@ -6,7 +6,10 @@ import React from 'react';
 import {AppRegistry} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
-import {configureAxios} from './src/utils/helperFunctions';
+import {
+  configureAxios,
+  configureApiRequestBoilerplateActions,
+} from './src/utils/helperFunctions';
 import {Provider} from 'react-redux';
 import store from './src/redux/store';
 import Reactotron from './ReactotronConfig';
@@ -19,5 +22,6 @@ const ConnectedApp = () => (
   </Provider>
 );
 configureAxios();
+configureApiRequestBoilerplateActions();
 
 AppRegistry.registerComponent(appName, () => ConnectedApp);
