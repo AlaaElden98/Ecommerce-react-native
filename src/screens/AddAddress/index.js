@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, SafeAreaView} from 'react-native';
+import {View, SafeAreaView, ScrollView} from 'react-native';
 import {Input} from '../../components/Input';
 import {AppButton} from '../../components/AppButton';
 import {addAddress} from '../../redux/actions';
@@ -47,7 +47,7 @@ export function AddAddressScreen(props) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <ScrollView>
         <Input
           placeholder="Name"
           stacked
@@ -90,7 +90,7 @@ export function AddAddressScreen(props) {
           onChangeText={highOrderSetInput('building')}
           value={inputs.building || ''}
         />
-      </View>
+      </ScrollView>
 
       <AppButton
         title="ADD"

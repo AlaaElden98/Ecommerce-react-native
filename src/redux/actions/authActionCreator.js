@@ -39,6 +39,8 @@ export const clearReduxData = () => ({
   type: ActionTypes.CLEAR_REDUX_DATA,
 });
 
+const UpdateUserSuccess = () => ({type: ActionTypes.UPDATE_USER_SUCCESS});
+
 export const signIn = (phone) => {
   return (dispatch, getState) => {
     dispatch(signInStart());
@@ -89,6 +91,7 @@ export const getUserData = () => {
   return (dispatch, getState) => {
     axios.get('/user/get-data').then((res) => {
       dispatch(setUser(res.data.userData));
+      dispatch(UpdateUserSuccess());
     });
   };
 };

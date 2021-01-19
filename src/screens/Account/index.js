@@ -7,7 +7,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {logOut} from '../../redux/actions';
 
 function renderInfoSection(user, navigation) {
-  console.log(user.name);
   return (
     <View style={styles.infoSection}>
       <IonIcon name="person" style={styles.personIcon} />

@@ -65,7 +65,7 @@ function authReducer(state = initialState, action) {
         isConfirmingCode: false,
         confirmCodeFailure: {errorCode: action.payload.errorCode},
       };
-    case 'SUCCESS_' + 'changeName':
+    case ActionTypes.UPDATE_USER_SUCCESS:
       return {
         ...state,
         updateNameSuccess: {},

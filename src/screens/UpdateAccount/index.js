@@ -23,7 +23,7 @@ export function UpdateAccountScreen(props) {
 
   const updateInput = (value) => {
     setInput({
-      value,
+      value: value,
       isValid: value !== '' && value !== user.name,
     });
   };
@@ -50,7 +50,7 @@ export function UpdateAccountScreen(props) {
 
       <AppButton
         title="SAVE"
-        onPress={() => dispatch(updateUserName(input))}
+        onPress={() => dispatch(updateUserName(input.value))}
         isLoading={isLoading}
         disabled={!input.isValid}
       />

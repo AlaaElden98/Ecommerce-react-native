@@ -26,7 +26,7 @@ export function SignInScreen(props) {
   }, [success]);
 
   useUpdateEffect(() => {
-    showError(error.errorCode);
+    showError(failure.errorCode);
   }, [failure]);
 
   const doneHandler = () => {
