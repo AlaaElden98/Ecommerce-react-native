@@ -1,4 +1,5 @@
 import * as ActionTypes from '../actions/ActionTypes';
+import {highOrderReducer} from 'api-request-biolerplate-actions';
 
 const initialState = {
   token: '',
@@ -67,4 +68,13 @@ function authReducer(state = initialState, action) {
       return state;
   }
 }
-export default authReducer;
+export default highOrderReducer(
+  initialState,
+  [
+    {
+      requestEndPoint: 'user/get-data',
+      baseActionType: 'userData',
+    },
+  ],
+  authReducer,
+);
