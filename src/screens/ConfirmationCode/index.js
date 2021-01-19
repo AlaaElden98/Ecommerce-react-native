@@ -8,7 +8,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {confirmCode} from '../../redux/actions';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import {showError} from '../../utils/helperFunctions';
-import {errorCodeMessageMapper} from '../../utils/errorCodes';
 
 function ConfirmationCodeScreen(props) {
   const {phone} = props.route.params;
@@ -19,7 +18,7 @@ function ConfirmationCodeScreen(props) {
   const dispatch = useDispatch();
 
   useUpdateEffect(() => {
-    showError(errorCodeMessageMapper[failure.errorCode]);
+    showError(error.errorCode);
   }, [failure]);
 
   const doneHandler = () => {
