@@ -9,6 +9,7 @@ const initialState = {
   isConfirmingCode: false,
   confirmCodeSuccess: null,
   confirmCodeFailure: null,
+  updateUserNameSuccess: null,
 };
 
 function authReducer(state = initialState, action) {
@@ -61,6 +62,11 @@ function authReducer(state = initialState, action) {
         ...state,
         isConfirmingCode: false,
         confirmCodeFailure: {errorCode: action.payload.errorCode},
+      };
+    case ActionTypes.UPDATE_USER_NAME:
+      return {
+        ...state,
+        updateUserNameSuccess: {},
       };
 
     default:

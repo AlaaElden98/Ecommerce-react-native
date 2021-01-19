@@ -38,6 +38,10 @@ export const clearReduxData = () => ({
   type: ActionTypes.CLEAR_REDUX_DATA,
 });
 
+export const updateUserNameSuccess = () => ({
+  type: ActionTypes.UPDATE_USER_NAME,
+});
+
 export const signIn = (phone) => {
   return (dispatch, getState) => {
     dispatch(signInStart());
@@ -76,10 +80,27 @@ export const confirmCode = (phone, code) => {
   };
 };
 
+export const updateUserName = (name) => {
+  return (dispatch, getState) => {
+    axios.put('/user/change-name', {name}).then((res) => {
+      dispatch(getUserData());
+      dispatch(updateUserNameSuccess());
+    });
+  };
+};
+
 export const logOut = () => {
   return (dispatch, getState) => {
     axios.defaults.headers.Authorization = undefined;
     AsyncStorage.clear();
     dispatch(clearReduxData());
+  };
+};
+
+export const getUserData = () => {
+  return (dispatch, getState) => {
+    axios.get('/user/get-data').then((res) => {
+      dispatch(setUser(res.data.userData));
+    });
   };
 };
