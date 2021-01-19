@@ -11,6 +11,7 @@ const initialState = {
   confirmCodeSuccess: null,
   confirmCodeFailure: null,
   updateNameSuccess: null,
+  addAddressSuccess: null,
 };
 
 function authReducer(state = initialState, action) {
@@ -69,6 +70,11 @@ function authReducer(state = initialState, action) {
         ...state,
         updateNameSuccess: {},
       };
+    case 'SUCCESS_' + 'addAddress':
+      return {
+        ...state,
+        addAddressSuccess: {},
+      };
 
     default:
       return state;
@@ -84,6 +90,10 @@ export default highOrderReducer(
     {
       requestEndPoint: 'user/change-name',
       baseActionType: 'changeName',
+    },
+    {
+      requestEndPoint: 'address',
+      baseActionType: 'addAddress',
     },
   ],
   authReducer,
