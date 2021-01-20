@@ -12,6 +12,7 @@ const initialState = {
   confirmCodeFailure: null,
   updateNameSuccess: null,
   addAddressSuccess: null,
+  orders: [],
 };
 
 function authReducer(state = initialState, action) {
@@ -75,7 +76,11 @@ function authReducer(state = initialState, action) {
         ...state,
         addAddressSuccess: {},
       };
-
+    case 'SUCCESS_' + 'getOrders':
+      return {
+        ...state,
+        orders: action.payload.data.orders,
+      };
     default:
       return state;
   }
@@ -94,6 +99,10 @@ export default highOrderReducer(
     {
       requestEndPoint: 'address',
       baseActionType: 'addAddress',
+    },
+    {
+      requestEndPoint: 'order',
+      baseActionType: 'getOrders',
     },
   ],
   authReducer,

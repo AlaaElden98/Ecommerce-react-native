@@ -113,3 +113,9 @@ export const addAddress = ({name, phone, city, area, street, building}) => {
       });
   };
 };
+
+export const getOrders = () => {
+  return (dispatch, getState) => {
+    axios.get('/order');
+  };
+};
