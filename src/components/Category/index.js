@@ -13,9 +13,7 @@ export function Category(props) {
   return (
     <PlatFormTouchable
       style={styles.container}
-      onPress={() =>
-        navigation.navigate('CategoryScreen', {categoryId: category._id})
-      }>
+      onPress={() => navigation.navigate('CategoryScreen', {category})}>
       <Card>
         <Image
           source={{uri: IMAGES_URL + 'cat-thumbs/resized/' + category.image}}

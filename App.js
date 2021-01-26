@@ -6,6 +6,7 @@ import {TOKEN_KEY, USER_KEY} from './src/utils/constants';
 import {useSelector, useDispatch} from 'react-redux';
 import {setToken, setUser, getUserData} from './src/redux/actions';
 function App(props) {
+  //TODO : handle API's requests error
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
 
