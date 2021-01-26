@@ -10,7 +10,6 @@ import styles from './styles';
 
 export function Product(props) {
   const {product} = props;
-  r.log(product);
   const navigation = useNavigation();
   return (
     <PlatFormTouchable

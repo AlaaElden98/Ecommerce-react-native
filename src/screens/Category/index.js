@@ -1,14 +1,22 @@
 import React from 'react';
 import {View, Text, SafeAreaView} from 'react-native';
 import {Product} from '../../components/Product';
-import {dummyProduct1} from '../../utils/dummyData';
+import {fetchChildrenCategroies} from '../../redux/actions';
+import {useDispatch} from 'react-redux';
+
 import styles from './styles';
 
 export function CategoryScreen(props) {
+  const {categoryId} = props.route.params;
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(fetchChildrenCategroies(categoryId));
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.headerText}>Products</Text>
-      <Product product={dummyProduct1} />
     </SafeAreaView>
   );
 }

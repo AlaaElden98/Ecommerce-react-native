@@ -19,30 +19,11 @@ function renderCategoriesList(categories) {
 
 export function HomeScreen(props) {
   const dispatch = useDispatch();
-
-  // const fetchCategoriesError = useSelector(
-  //   (state) => state.home.getHomeCategoriesError,
-  // );
-  // const fetchProductsError = useSelector(
-  //   (state) => state.home.fetchHomeProductsError,
-  // );
-
-  // useUpdateEffect(() => {
-  //   showError(fetchCategoriesError.errorCode);
-  // }, [fetchCategoriesError]);
-
-  // useUpdateEffect(() => {
-  //   showError(fetchProductsError.errorCode);
-  // }, [fetchProductsError]);
-
   React.useEffect(() => {
     dispatch(fetchHomeData());
   }, []);
-
   const categories = useSelector((state) => state.home.home.categories);
   const products = useSelector((state) => state.home.home.products);
-  r.log('cat', categories);
-
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.headerText}>Categories</Text>

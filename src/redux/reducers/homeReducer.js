@@ -5,6 +5,7 @@ const initialState = {
     categories: [],
     products: [],
   },
+  childrenCategories: {},
 };
 
 function homeReducer(state = initialState, action) {
@@ -23,6 +24,14 @@ function homeReducer(state = initialState, action) {
         home: {
           ...state.home,
           products: action.payload.data.products,
+        },
+      };
+    case ActionTypes.SET_CHILDREN_CATEGORIES:
+      return {
+        ...state,
+        childrenCategories: {
+          [action.payload.data.children[0].parentId]:
+            action.payload.data.children,
         },
       };
 
