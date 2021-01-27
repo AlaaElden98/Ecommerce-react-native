@@ -6,6 +6,8 @@ const initialState = {
     products: [],
   },
   childrenCategories: {},
+  categoryProducts: {},
+  categoryProductsNextPages: {},
 };
 
 function homeReducer(state = initialState, action) {
@@ -33,6 +35,27 @@ function homeReducer(state = initialState, action) {
           ...state.childrenCategories,
           [action.payload.data.children[0].parentId]:
             action.payload.data.children,
+        },
+      };
+    case ActionTypes.APPEND_PRODUCTS:
+      const catId = action.payload.categoryId;
+
+      return {
+        ...state,
+        categoryProducts: {
+          ...state.categoryProducts,
+          [catId]: (state.categoryProducts[catId] || []).concat(
+            action.payload.products,
+          ),
+        },
+      };
+
+    case ActionTypes.SET_CATEGORY_PRODUCTS_PAGE:
+      return {
+        ...state,
+        categoryProductsNextPages: {
+          ...state.categoryProductsNextPages,
+          [action.payload.categoryId]: action.payload.nextPage,
         },
       };
 
