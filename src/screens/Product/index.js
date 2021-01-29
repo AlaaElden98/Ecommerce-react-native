@@ -16,7 +16,6 @@ export function ProductScreen(props) {
   const [product, setProduct] = React.useState();
   const dispatch = useDispatch();
   const reduxProduct = useSelector((state) => state.home.product);
-
   React.useEffect(() => {
     if (reduxProduct && reduxProduct._id === productId) {
       setProduct(reduxProduct);
