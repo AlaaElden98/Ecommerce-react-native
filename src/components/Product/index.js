@@ -11,7 +11,6 @@ import styles from './styles';
 export function Product(props) {
   const {product} = props;
   const navigation = useNavigation();
-  r.log(product);
   return (
     <PlatFormTouchable
       style={styles.container}
