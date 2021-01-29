@@ -17,14 +17,14 @@ const styles = ScaledSheet.create({
   },
   backIcon: {
     fontSize: '32@s',
-    color: '#fff',
+    color: '#C0C0C0',
     paddingStart: '20@s',
     paddingVertical: '10@vs',
   },
   productTitle: {
     fontSize: '18@s',
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#C0C0C0',
   },
   titleWrapper: {
     flex: 1,
@@ -33,19 +33,18 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
   },
   buttonWrapper: {
-		flex :1,
-		justifyContent:'flex-end',
-	},
-	wrapper:{
-		flex:1,
-		padding:'10@s'
-	},
-	discriptionText:{
-		fontSize:'18@s'
-		,
-		color:'#bbb',
-		paddingVertical:'10@s'
-	}	
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  wrapper: {
+    flex: 1,
+    padding: '10@s',
+  },
+  discriptionText: {
+    fontSize: '18@s',
+    color: '#bbb',
+    paddingVertical: '10@s',
+  },
 });
 
 export default styles;
