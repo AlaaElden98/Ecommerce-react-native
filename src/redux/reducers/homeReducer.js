@@ -8,6 +8,7 @@ const initialState = {
   childrenCategories: {},
   categoryProducts: {},
   categoryProductsNextPages: {},
+  product: null,
 };
 
 function homeReducer(state = initialState, action) {
@@ -58,7 +59,11 @@ function homeReducer(state = initialState, action) {
           [action.payload.categoryId]: action.payload.nextPage,
         },
       };
-
+    case ActionTypes.SET_PRODUCT:
+      return {
+        ...state,
+        product: action.payload.data.product,
+      };
     default:
       return state;
   }

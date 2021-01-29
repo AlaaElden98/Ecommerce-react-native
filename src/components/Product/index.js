@@ -11,10 +11,13 @@ import styles from './styles';
 export function Product(props) {
   const {product} = props;
   const navigation = useNavigation();
+  r.log(product);
   return (
     <PlatFormTouchable
       style={styles.container}
-      onPress={() => navigation.navigate('ProductScreen', {productId: 1})}>
+      onPress={() =>
+        navigation.navigate('ProductScreen', {productId: product._id})
+      }>
       <Card>
         <Image
           source={{uri: IMAGES_URL + 'products/resized/' + product.images[0]}}

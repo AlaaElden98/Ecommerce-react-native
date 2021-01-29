@@ -14,6 +14,10 @@ const SET_CHILDREN_CATEGORIES = (payload) => ({
   type: ActionTypes.SET_CHILDREN_CATEGORIES,
   payload: payload,
 });
+const SET_PRODUCT = (payload) => ({
+  type: ActionTypes.SET_PRODUCT,
+  payload: payload,
+});
 export const fetchHomeData = () => {
   return (dispatch, getState) => {
     dispatch(fetchHomeCategories());
@@ -43,7 +47,13 @@ export const fetchChildrenCategroies = (categoryId) => {
     });
   };
 };
-
+export const fetchProductById = (id) => {
+  return (dispatch, getState) => {
+    axios.get('/product-by-id/' + id).then((res) => {
+      dispatch(SET_PRODUCT(res));
+    });
+  };
+};
 export const appendProducts = (categoryId, products) => ({
   type: ActionTypes.APPEND_PRODUCTS,
   payload: {categoryId, products},
