@@ -3,6 +3,7 @@ import {View, Text, FlatList, SafeAreaView} from 'react-native';
 import {CartItem} from '../../components/CartItem';
 import {AppButton} from '../../components/AppButton';
 import {useSelector} from 'react-redux';
+import {totalSelector} from '../../redux/selectors';
 import styles from './styles';
 
 function renderItem({item}) {
@@ -13,13 +14,23 @@ function renderCartItems(cartItems) {
 }
 
 export function CartScreen(props) {
+  const {navigation} = props;
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const total = useSelector(totalSelector);
+
   return (
     <SafeAreaView style={styles.container}>
       {renderCartItems(cartItems)}
       <View style={styles.wrapper}>
-        <Text style={styles.totalText}>Total = 3456 $</Text>
-        <AppButton title="CHECKOUT" titleStyle={styles.checkOutText} />
+        <Text style={styles.totalText}>Total = ${total} $</Text>
+        <AppButton
+          title="CHECKOUT"
+          titleStyle={styles.checkoutText}
+          onPress={() => {
+            navigation.navigate('CheckOutScreen');
+          }}
+          disabled={cartItems.length === 0}
+        />
       </View>
     </SafeAreaView>
   );
