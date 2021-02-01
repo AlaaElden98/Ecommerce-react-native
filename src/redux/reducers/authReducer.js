@@ -76,6 +76,12 @@ function authReducer(state = initialState, action) {
         ...state,
         addAddressSuccess: {},
       };
+    case ActionTypes.ADDRESS_SELECTED:
+      return {
+        ...state,
+        selectedAddressId: action.payload.addressId,
+      };
+
     case 'SUCCESS_' + 'getOrders':
       return {
         ...state,
@@ -102,6 +108,7 @@ export default highOrderReducer(
     },
     {
       requestEndPoint: 'order',
+      requestMethod: 'get',
       baseActionType: 'getOrders',
     },
   ],

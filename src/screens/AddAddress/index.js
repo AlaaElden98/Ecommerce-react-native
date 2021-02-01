@@ -6,16 +6,21 @@ import {addAddress} from '../../redux/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import {showError} from '../../utils/helperFunctions';
+import {Address} from '../../components/Address';
 
 import styles from './styles';
 
 export function AddAddressScreen(props) {
+  const {navigation} = props;
   const [inputs, setInputs] = React.useState({});
-  const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.auth.addAddressLoading);
-  const error = useSelector((state) => state.auth.addAddressError);
   const [isValid, setIsValid] = React.useState(false);
+
+  const error = useSelector((state) => state.auth.addAddressError);
   const success = useSelector((state) => state.auth.addAddressSuccess);
+  const isLoading = useSelector((state) => state.auth.addAddressLoading);
+  const user = useSelector((state) => state.auth.user);
+
+  const dispatch = useDispatch();
 
   useUpdateEffect(() => {
     showError(error.errorCode);
@@ -90,12 +95,15 @@ export function AddAddressScreen(props) {
           onChangeText={highOrderSetInput('building')}
           value={inputs.building || ''}
         />
+        {user.addresses.map((address) => {
+          return <Address address={address} />;
+        })}
       </ScrollView>
 
       <AppButton
         title="ADD"
         onPress={() => {
-          dispatch(addAddress(inputs));
+          dispatch(addAddress(inputs)), navigation.goBack();
         }}
         isLoading={isLoading}
         disabled={!isValid}
