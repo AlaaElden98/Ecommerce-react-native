@@ -66,3 +66,18 @@ export const addToCart = (productId, cost, count) => {
       });
   };
 };
+
+export const updateCartItemImmediately = (cartItemId, action) => ({
+  type: ActionTypes.UPDATE_CART_ITEM_IMMEDIATELY,
+  payload: {cartItemId, action},
+});
+export const updateCartItem = (cartItemId, action, count) => {
+  return (dispatch, getState) => {
+    dispatch(updateCartItemImmediately(cartItemId, action));
+
+    axios.put('cart', {id: cartItemId, action, count}).catch((err) => {
+      dispatch(fetchCartItems());
+      dispatch(addProductToCartError());
+    });
+  };
+};

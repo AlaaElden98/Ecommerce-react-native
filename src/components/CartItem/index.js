@@ -6,6 +6,7 @@ import {Card} from '../Card';
 import {PlatFormTouchable} from '../PlatFormTouchable';
 import {useNavigation} from '@react-navigation/native';
 import {IMAGES_URL} from '../../utils/constants';
+import {getActualPrice} from '../../utils/helperFunctions';
 import styles from './styles';
 
 export function CartItem(props) {
@@ -15,7 +16,11 @@ export function CartItem(props) {
     <Card style={styles.outerContainer}>
       <PlatFormTouchable
         style={styles.container}
-        onPress={() => navigation.navigate('ProductScreen', {productId: 1})}>
+        onPress={() =>
+          navigation.navigate('ProductScreen', {
+            productId: cartItem.product._id,
+          })
+        }>
         <Image
           source={{
             uri: IMAGES_URL + 'products/resized/' + cartItem.product.images[0],
@@ -30,7 +35,14 @@ export function CartItem(props) {
             price={cartItem.product.price}
             discount={cartItem.product.discount}
           />
-          <AddToCartButton quantity={1} />
+          <AddToCartButton
+            productId={cartItem.product._id}
+            cost={getActualPrice(
+              cartItem.product.price,
+              cartItem.product.discount,
+            )}
+            count={cartItem.product.increaseCount}
+          />
         </View>
       </PlatFormTouchable>
     </Card>
