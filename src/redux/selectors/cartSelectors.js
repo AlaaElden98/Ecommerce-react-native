@@ -4,7 +4,10 @@ export function totalSelector(state) {
   const {cartItems} = state.cart;
 
   const total = cartItems.reduce((acc, item) => {
-    return acc + getActualPrice(item.product.price, item.product.discount);
+    return (
+      acc +
+      getActualPrice(item.product.price, item.product.discount) * item.count
+    );
   }, 0);
 
   return total.toFixed(2);
