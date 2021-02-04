@@ -7,9 +7,6 @@ const SET_CART_ITEMS = (payload) => ({
   payload: payload,
 });
 
-const MAKE_ORDER = () => ({
-  type: ActionTypes.MAKE_ORDER,
-});
 export const fetchCartItems = () => {
   return (dispatch, getState) => {
     axios.get('cart').then((res) => {
@@ -17,6 +14,10 @@ export const fetchCartItems = () => {
     });
   };
 };
+
+const MAKE_ORDER = () => ({
+  type: ActionTypes.MAKE_ORDER,
+});
 
 export const makeOrder = () => {
   return (dispatch, getState) => {
@@ -31,5 +32,37 @@ export const makeOrder = () => {
         totalCost: total,
       })
       .then((res) => dispatch(MAKE_ORDER()));
+  };
+};
+
+const setAddingProductToCart = (productId) => ({
+  type: ActionTypes.SET_ADDING_PRODUCT_TO_CART,
+  payload: {productId},
+});
+
+const clearAddingProductToCart = (productId) => ({
+  type: ActionTypes.CLEAR_ADDING_PRODUCT_TO_CART,
+  payload: {productId},
+});
+
+const addProductToCartError = (errorCode) => ({
+  type: ActionTypes.ADD_PRODUCT_TOCART_ERROR,
+  payload: {errorCode},
+});
+
+export const addToCart = (productId, cost, count) => {
+  return (dispatch, getState) => {
+    dispatch(setAddingProductToCart(productId));
+    axios
+      .post('cart', {product: productId, cost, count})
+      .then((res) => {
+        dispatch(fetchCartItems());
+      })
+      .catch((err) => {
+        dispatch(addProductToCartError());
+      })
+      .finally(() => {
+        dispatch(clearAddingProductToCart(productId));
+      });
   };
 };

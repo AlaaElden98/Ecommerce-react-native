@@ -6,13 +6,13 @@ import {IonIcon} from '../../components/IonIcons';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchProductById} from '../../redux/actions';
 import {IMAGES_URL} from '../../utils/constants';
-import {useNavigation} from '@react-navigation/native';
 import {cutLongName} from '../../utils/helperFunctions';
+import {getActualPrice} from '../../utils/helperFunctions';
 import styles from './styles';
 
 export function ProductScreen(props) {
   const {productId} = props.route.params;
-  const navigation = useNavigation();
+  const {navigation} = props;
   const [product, setProduct] = React.useState();
   const dispatch = useDispatch();
   const reduxProduct = useSelector((state) => state.home.product);
@@ -49,7 +49,11 @@ export function ProductScreen(props) {
         <Text style={styles.discriptionText}>Description</Text>
         <Text>{product.details}</Text>
         <View style={styles.buttonWrapper}>
-          <AddToCartButton />
+          <AddToCartButton
+            productId={productId}
+            cost={getActualPrice(product.price, product.discount)}
+            count={product.increaseCount}
+          />
         </View>
       </View>
     </SafeAreaView>
