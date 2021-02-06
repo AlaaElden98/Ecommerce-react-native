@@ -4,13 +4,31 @@ import {CartItem} from '../../components/CartItem';
 import {AppButton} from '../../components/AppButton';
 import {useSelector} from 'react-redux';
 import {totalSelector} from '../../redux/selectors';
+import {EmptyList} from '../../components/EmptyList';
+import {IonIcon} from '../../components/IonIcons';
 import styles from './styles';
+
+function EmptyCart() {
+  return (
+    <EmptyList
+      renderIcon={() => <IonIcon name="cart" style={styles.cartIcon} />}
+      renderText={() => <Text style={styles.emptyText}>Empty Cart</Text>}
+    />
+  );
+}
 
 function renderItem({item}) {
   return <CartItem cartItem={item} />;
 }
 function renderCartItems(cartItems) {
-  return <FlatList data={cartItems} renderItem={renderItem} />;
+  return (
+    <FlatList
+      contentContainerStyle={styles.list}
+      data={cartItems}
+      renderItem={renderItem}
+      ListEmptyComponent={EmptyCart}
+    />
+  );
 }
 
 export function CartScreen(props) {

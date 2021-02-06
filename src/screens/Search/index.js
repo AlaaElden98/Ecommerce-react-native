@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, SafeAreaView} from 'react-native';
+import {View, SafeAreaView, ActivityIndicator} from 'react-native';
 import {Input} from '../../components/Input';
 import {IonIcon} from '../../components/IonIcons';
 import {useDispatch, useSelector} from 'react-redux';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import {ProductsList} from '../../components/ProductsList';
 import {searchForProduct} from '../../redux/actions/searchActionCreator';
+import {EmptyList} from '../../components/EmptyList';
 import styles from './styles';
 
 function renderSearchIcon() {
@@ -32,7 +33,7 @@ export function SearchScreen() {
 
   useUpdateEffect(() => {
     setProducts([]);
-    fetchProducts();
+    input && fetchProducts();
   }, [input]);
 
   return (
@@ -44,11 +45,14 @@ export function SearchScreen() {
         onChangeText={setInput}
         wrapperStyle={styles.input}
       />
-      <ProductsList
-        data={products}
-        onEndReachedThreshold={0.5}
-        onEndReached={continueFetchProducts}
-      />
+      {input ? (
+        <ProductsList
+          data={products}
+          onEndReachedThreshold={0.5}
+          onEndReached={continueFetchProducts}
+          isLoading={products.length === 0}
+        />
+      ) : null}
     </SafeAreaView>
   );
 }

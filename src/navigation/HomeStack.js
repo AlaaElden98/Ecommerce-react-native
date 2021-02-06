@@ -21,11 +21,7 @@ export function HomeStack(props) {
       <Stack.Screen
         name="ProductScreen"
         component={ProductScreen}
-        options={
-          ({headerShown: false},
-          {headerBackTitleVisible: false},
-          {title: 'Product'})
-        }
+        options={({headerShown: false}, {title: 'Product'})}
       />
       <Stack.Screen
         name="CategoryScreen"
