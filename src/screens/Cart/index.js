@@ -23,6 +23,7 @@ function renderItem({item}) {
 function renderCartItems(cartItems) {
   return (
     <FlatList
+      keyExtractor={keyExtractor}
       contentContainerStyle={styles.list}
       data={cartItems}
       renderItem={renderItem}
@@ -30,6 +31,7 @@ function renderCartItems(cartItems) {
     />
   );
 }
+const keyExtractor = (item) => item._id;
 
 export function CartScreen(props) {
   const {navigation} = props;

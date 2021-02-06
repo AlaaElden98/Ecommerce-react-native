@@ -26,8 +26,8 @@ export function ProductScreen(props) {
     dispatch(fetchProductById(productId));
   }, []);
   return product ? (
-    <ScrollView>
-      <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
         <Image
           source={{uri: IMAGES_URL + 'products/' + product.images[0]}}
           style={styles.image}
@@ -44,7 +44,7 @@ export function ProductScreen(props) {
             />
           </View>
         </View>
-      </SafeAreaView>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   ) : null;
 }

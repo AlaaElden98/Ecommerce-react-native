@@ -11,22 +11,30 @@ import styles from './styles';
 function renderOrder({item}) {
   return <Order order={item} />;
 }
-function renderOrders(orders) {
-  const Empty = () => (orders.length === 0 ? <EmptyList /> : null);
-  console.log(orders);
+function renderOrders(orders, Empty) {
   return (
     <FlatList
       contentContainerStyle={styles.list}
       data={orders}
       renderItem={renderOrder}
       ListEmptyComponent={Empty}
+      keyExtractor={keyExtractor}
     />
   );
 }
+function keyExtractor(order) {
+  return order._id;
+}
+
 export function OrdersScreen(props) {
   const dispatch = useDispatch();
   const error = useSelector((state) => state.auth.getOrdersError);
   const orders = useSelector((state) => state.auth.orders);
+
+  const Empty = React.useCallback(
+    () => (orders.length === 0 ? <EmptyList /> : null),
+    [orders.length],
+  );
 
   React.useEffect(() => {
     dispatch(getOrders());
@@ -36,5 +44,5 @@ export function OrdersScreen(props) {
     showError(error.errorCode);
   }, [error]);
 
-  return <View style={styles.container}>{renderOrders(orders)}</View>;
+  return <View style={styles.container}>{renderOrders(orders, Empty)}</View>;
 }

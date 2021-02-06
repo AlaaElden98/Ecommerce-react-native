@@ -13,9 +13,15 @@ function renderCategory({item}) {
 }
 function renderCategoriesList(categories) {
   return (
-    <FlatList data={categories} renderItem={renderCategory} horizontal={true} />
+    <FlatList
+      data={categories}
+      renderItem={renderCategory}
+      horizontal={true}
+      keyExtractor={keyExtractor}
+    />
   );
 }
+const keyExtractor = (item) => item._id;
 
 export function HomeScreen(props) {
   const dispatch = useDispatch();
