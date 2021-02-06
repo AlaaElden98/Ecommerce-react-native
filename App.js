@@ -10,15 +10,16 @@ import {
   getUserData,
   fetchCartItems,
 } from './src/redux/actions';
+import RNBootSplash from 'react-native-bootsplash';
+
 function App(props) {
-  //TODO : handle API's requests error
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
 
   React.useEffect(() => {
-    //AsyncStorage.clear();
     AsyncStorage.getItem(TOKEN_KEY).then((tokenValue) => {
       dispatch(setToken(tokenValue));
+      RNBootSplash.hide(); // immediate
       if (tokenValue) {
         axios.defaults.headers.Authorization = 'Bearer ' + tokenValue;
         dispatch(fetchCartItems());
