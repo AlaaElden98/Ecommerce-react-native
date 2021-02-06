@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
-const incDecBtnColor = "#bbb";
+const incDecBtnColor = '#bbb';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -8,15 +8,15 @@ const styles = StyleSheet.create({
     minHeight: 50,
   },
   increaseDecreaseContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     backgroundColor: incDecBtnColor,
-    justifyContent: "space-around",
-    alignItems: "center",
+    justifyContent: 'space-around',
+    alignItems: 'center',
     borderWidth: 1,
     borderRadius: 5,
     borderColor: incDecBtnColor,
   },
-  text: { fontSize: 24 },
+  text: {fontSize: 24},
   plusMinus: {
     padding: 10,
   },

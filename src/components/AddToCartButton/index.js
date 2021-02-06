@@ -1,18 +1,40 @@
 import React, {useState} from 'react';
 import {Text, View} from 'react-native';
 import {AppButton} from '../AppButton';
+import {useSelector, useDispatch} from 'react-redux';
+import {addToCart, updateCartItem} from '../../redux/actions';
+import {useUpdateEffect} from '../../utils/useUpdateEffect';
+import {showError} from '../../utils/helperFunctions';
+
 import styles from './styles';
 
 export function AddToCartButton(props) {
-  const [quantity, setQuantity] = useState(props? 1 : 0);
-
+  const {productId, cost, count} = props;
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const matchingCartItem = cartItems.find(
+    (item) => item.product._id === productId,
+  );
+  const cartItemCount = matchingCartItem ? matchingCartItem.count : 0;
+  const isAddingToCart = useSelector(
+    (state) => state.cart.isAddingProductToCart[productId],
+  );
+  const error = useSelector((state) => state.cart.addProductToCartError);
+  useUpdateEffect(() => {
+    showError(error.errorCode);
+  }, [error]);
 
   const increamentQuantityHandler = () => {
-    setQuantity(quantity + 1);
+    if (cartItemCount === 0) {
+      dispatch(addToCart(productId, cost, count));
+    } else {
+      dispatch(updateCartItem(matchingCartItem._id, 'increase', count));
+    }
   };
 
   const decreamentQuantityHandler = () => {
-    setQuantity(quantity - 1);
+    const action = cartItemCount === 1 ? 'delete' : 'decrease';
+    dispatch(updateCartItem(matchingCartItem._id, action, count));
   };
 
   const renderInitialButton = () => {
@@ -21,6 +43,7 @@ export function AddToCartButton(props) {
         onPress={increamentQuantityHandler}
         title="ADD TO CART"
         wrapperStyle={styles.wrapper}
+        isLoading={isAddingToCart}
       />
     );
   };
@@ -31,15 +54,15 @@ export function AddToCartButton(props) {
         <Text style={styles.plusMinus} onPress={decreamentQuantityHandler}>
           -
         </Text>
-        <Text>{quantity}</Text>
+        <Text>{cartItemCount}</Text>
         <Text style={styles.plusMinus} onPress={increamentQuantityHandler}>
           +
         </Text>
       </View>
     );
   };
-  
-  return quantity === 0
+
+  return cartItemCount === 0
     ? renderInitialButton()
     : renderIncreamentDecreamentButton();
 }

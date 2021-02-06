@@ -1,11 +1,16 @@
 import * as ActionTypes from './ActionTypes';
 import axios from 'axios';
-import {USER_KEY, TOKEN_KEY} from '../../utils/constants';
+import {
+  USER_KEY,
+  TOKEN_KEY,
+  SELECTED_ADDRESS_ID_KEY,
+} from '../../utils/constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   UNEXPECTED_ERROR_CODE,
   WRONG_CODE_ERROR_CODE,
 } from '../../utils/errorCodes';
+
 export const setToken = (token) => ({
   type: ActionTypes.SET_TOKEN,
   payload: {token},
@@ -37,6 +42,8 @@ const confirmCodeFaliure = (errorCode) => ({
 export const clearReduxData = () => ({
   type: ActionTypes.CLEAR_REDUX_DATA,
 });
+
+const UpdateUserSuccess = () => ({type: ActionTypes.UPDATE_USER_SUCCESS});
 
 export const signIn = (phone) => {
   return (dispatch, getState) => {
@@ -76,14 +83,6 @@ export const confirmCode = (phone, code) => {
   };
 };
 
-export const updateUserName = (name) => {
-  return (dispatch, getState) => {
-    axios.put('/user/change-name', {name}).then((res) => {
-      dispatch(getUserData());
-    });
-  };
-};
-
 export const logOut = () => {
   return (dispatch, getState) => {
     axios.defaults.headers.Authorization = undefined;
@@ -96,6 +95,42 @@ export const getUserData = () => {
   return (dispatch, getState) => {
     axios.get('/user/get-data').then((res) => {
       dispatch(setUser(res.data.userData));
+      dispatch(UpdateUserSuccess());
     });
+  };
+};
+
+export const updateUserName = (name) => {
+  return (dispatch, getState) => {
+    axios.put('/user/change-name', {name}).then((res) => {
+      dispatch(getUserData());
+    });
+  };
+};
+
+export const addAddress = ({name, phone, city, area, street, building}) => {
+  return (dispatch, getState) => {
+    axios
+      .post('/address', {name, phone, city, area, street, building})
+      .then((res) => {
+        dispatch(getUserData());
+        dispatch(selectAddress(res.data._id));
+      });
+  };
+};
+export const addressSelected = (addressId) => ({
+  type: ActionTypes.ADDRESS_SELECTED,
+  payload: {addressId},
+});
+export const selectAddress = (addressId) => {
+  return (dispatch, getState) => {
+    AsyncStorage.setItem(SELECTED_ADDRESS_ID_KEY, addressId);
+    dispatch(addressSelected(addressId));
+  };
+};
+
+export const getOrders = () => {
+  return (dispatch, getState) => {
+    axios.get('/order');
   };
 };

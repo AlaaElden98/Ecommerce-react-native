@@ -9,7 +9,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {signIn} from '../../redux/actions';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import {showError} from '../../utils/helperFunctions';
-import {errorCodeMessageMapper} from '../../utils/errorCodes';
 function renderIcon() {
   return <Icon name="call-outline" style={styles.icon} />;
 }
@@ -27,8 +26,7 @@ export function SignInScreen(props) {
   }, [success]);
 
   useUpdateEffect(() => {
-    console.log(failure);
-    showError(errorCodeMessageMapper[failure.errorCode]);
+    showError(failure.errorCode);
   }, [failure]);
 
   const doneHandler = () => {

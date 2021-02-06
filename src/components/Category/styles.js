@@ -12,9 +12,9 @@ const styles = ScaledSheet.create({
   },
   title: {
     fontSize: '20@s',
-	},
-	container:{
-		alignItems : 'flex-start'
-	}
+  },
+  container: {
+    alignItems: 'flex-start',
+  },
 });
-export default styles
+export default styles;

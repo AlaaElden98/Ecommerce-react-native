@@ -6,24 +6,34 @@ import {updateUserName} from '../../redux/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import {showError} from '../../utils/helperFunctions';
-import {errorCodeMessageMapper} from '../../utils/errorCodes';
 
 import styles from './styles';
 
 export function UpdateAccountScreen(props) {
-  const dispatch = useDispatch();
   const {navigation} = props;
-  const [name, setName] = React.useState('');
+  const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.auth.changeNameLoading);
   const success = useSelector((state) => state.auth.updateNameSuccess);
   const error = useSelector((state) => state.auth.changeNameError);
+  const user = useSelector((state) => state.auth.user);
+  const [input, setInput] = React.useState({
+    value: user.name || '',
+    isValid: false,
+  });
+
+  const updateInput = (value) => {
+    setInput({
+      value: value,
+      isValid: value !== '' && value !== user.name,
+    });
+  };
 
   useUpdateEffect(() => {
     navigation.goBack();
   }, [success]);
 
   useUpdateEffect(() => {
-    showError(errorCodeMessageMapper[error.errorCode]);
+    showError(error.errorCode);
   }, [error]);
 
   return (
@@ -33,15 +43,16 @@ export function UpdateAccountScreen(props) {
           placeholder="Name"
           stacked
           wrapperStyle={styles.input}
-          onChangeText={setName}
+          onChangeText={updateInput}
+          value={input.value}
         />
-        <Input placeholder="Phone" stacked wrapperStyle={styles.input} />
       </View>
 
       <AppButton
         title="SAVE"
-        onPress={() => dispatch(updateUserName(name))}
+        onPress={() => dispatch(updateUserName(input.value))}
         isLoading={isLoading}
+        disabled={!input.isValid}
       />
     </SafeAreaView>
   );

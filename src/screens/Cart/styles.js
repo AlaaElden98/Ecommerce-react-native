@@ -7,15 +7,24 @@ const styles = ScaledSheet.create({
   wrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-		alignItems: 'center',
-		padding:'10@s'
+    alignItems: 'center',
+    padding: '10@s',
   },
 
-	totalText:{
-		fontSize:'18@s'
-	},
-	checkOutText:{
-		fontSize:'16@s',
-	},
+  totalText: {
+    fontSize: '18@s',
+  },
+  checkOutText: {
+    fontSize: '16@s',
+  },
+  list: {
+    flex: 1,
+  },
+  cartIcon: {
+    fontSize: 96,
+  },
+  emptyText: {
+    fontSize: 32,
+  },
 });
 export default styles;

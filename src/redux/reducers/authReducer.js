@@ -11,6 +11,8 @@ const initialState = {
   confirmCodeSuccess: null,
   confirmCodeFailure: null,
   updateNameSuccess: null,
+  addAddressSuccess: null,
+  orders: [],
 };
 
 function authReducer(state = initialState, action) {
@@ -64,12 +66,27 @@ function authReducer(state = initialState, action) {
         isConfirmingCode: false,
         confirmCodeFailure: {errorCode: action.payload.errorCode},
       };
-    case 'SUCCESS_' + 'changeName':
+    case ActionTypes.UPDATE_USER_SUCCESS:
       return {
         ...state,
         updateNameSuccess: {},
       };
+    case 'SUCCESS_' + 'addAddress':
+      return {
+        ...state,
+        addAddressSuccess: {},
+      };
+    case ActionTypes.ADDRESS_SELECTED:
+      return {
+        ...state,
+        selectedAddressId: action.payload.addressId,
+      };
 
+    case 'SUCCESS_' + 'getOrders':
+      return {
+        ...state,
+        orders: action.payload.data.orders,
+      };
     default:
       return state;
   }
@@ -84,6 +101,15 @@ export default highOrderReducer(
     {
       requestEndPoint: 'user/change-name',
       baseActionType: 'changeName',
+    },
+    {
+      requestEndPoint: 'address',
+      baseActionType: 'addAddress',
+    },
+    {
+      requestEndPoint: 'order',
+      requestMethod: 'get',
+      baseActionType: 'getOrders',
     },
   ],
   authReducer,
