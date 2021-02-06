@@ -13,22 +13,28 @@ export function CartStack(props) {
       <Stack.Screen
         name="CartScreen"
         component={CartScreen}
-        options={({headerShown: false}, {headerBackTitleVisible: false})}
+        options={
+          ({headerShown: false},
+          {headerBackTitleVisible: false},
+          {title: 'Cart'})
+        }
       />
       <Stack.Screen
         name="ProductScreen"
         component={ProductScreen}
-        options={{headerBackTitleVisible: false}}
+        options={({headerBackTitleVisible: false}, {title: 'Product'})}
       />
       <Stack.Screen
         name="CheckOutScreen"
         component={CheckOutScreen}
-        options={{headerBackTitleVisible: false}}
+        options={({headerBackTitleVisible: false}, {title: 'Checkout'})}
       />
       <Stack.Screen
         name="AddAddressScreen"
         component={AddAddressScreen}
-        options={{headerBackTitleVisible: false}}
+        options={
+          ({headerBackTitleVisible: false}, {title: 'Select or add address'})
+        }
       />
     </Stack.Navigator>
   );

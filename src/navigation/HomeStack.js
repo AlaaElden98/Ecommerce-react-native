@@ -12,17 +12,25 @@ export function HomeStack(props) {
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={({headerShown: false}, {headerBackTitleVisible: false})}
+        options={
+          ({headerShown: false},
+          {headerBackTitleVisible: false},
+          {title: 'Home'})
+        }
       />
       <Stack.Screen
         name="ProductScreen"
         component={ProductScreen}
-        options={({headerShown: false}, {headerBackTitleVisible: false})}
+        options={
+          ({headerShown: false},
+          {headerBackTitleVisible: false},
+          {title: 'Product'})
+        }
       />
       <Stack.Screen
         name="CategoryScreen"
         component={CategoryScreen}
-        options={{headerBackTitleVisible: false}}
+        options={({headerBackTitleVisible: false}, {title: 'Category'})}
       />
     </Stack.Navigator>
   );

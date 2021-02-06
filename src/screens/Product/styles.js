@@ -42,7 +42,7 @@ const styles = ScaledSheet.create({
   },
   discriptionText: {
     fontSize: '18@s',
-    color: '#bbb',
+    color: 'black',
     paddingVertical: '10@s',
   },
 });

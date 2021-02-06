@@ -12,9 +12,17 @@ export function AccountStack(props) {
       <Stack.Screen
         name="AccountScreen"
         component={AccountScreen}
-        options={({headerShown: false}, {headerBackTitleVisible: false})}
+        options={
+          ({headerShown: false},
+          {headerBackTitleVisible: false},
+          {title: 'Account'})
+        }
       />
-      <Stack.Screen name="AddAddressScreen" component={AddAddressScreen} />
+      <Stack.Screen
+        name="AddAddressScreen"
+        component={AddAddressScreen}
+        options={{title: 'Add address'}}
+      />
       <Stack.Screen
         name="UpdateAccountScreen"
         component={UpdateAccountScreen}
@@ -23,7 +31,9 @@ export function AccountStack(props) {
       <Stack.Screen
         name="OrdersScreen"
         component={OrdersScreen}
-        options={{headerBackTitleVisible: false}}
+        options={
+          ({headerBackTitleVisible: false}, {title: 'Your previous orders'})
+        }
       />
     </Stack.Navigator>
   );

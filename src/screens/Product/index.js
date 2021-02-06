@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, SafeAreaView} from 'react-native';
+import {View, Text, Image, SafeAreaView, ScrollView} from 'react-native';
 import {Price} from '../../components/Price';
 import {AddToCartButton} from '../../components/AddToCartButton';
 import {IonIcon} from '../../components/IonIcons';
@@ -25,37 +25,26 @@ export function ProductScreen(props) {
   React.useEffect(() => {
     dispatch(fetchProductById(productId));
   }, []);
-
   return product ? (
-    <SafeAreaView style={styles.container}>
-      <Image
-        source={{uri: IMAGES_URL + 'products/' + product.images[0]}}
-        style={styles.image}
-      />
-      <View style={styles.iconTitleWrapper}>
-        <IonIcon
-          name={'arrow-back'}
-          style={styles.backIcon}
-          onPress={() => navigation.goBack()}
+    <ScrollView>
+      <SafeAreaView style={styles.container}>
+        <Image
+          source={{uri: IMAGES_URL + 'products/' + product.images[0]}}
+          style={styles.image}
         />
-        <View style={styles.titleWrapper}>
-          <Text numberOfLines={1} style={styles.productTitle}>
-            {cutLongName(product.title, 28)}
-          </Text>
+
+        <View style={styles.wrapper}>
+          <Price price={product.price} discount={product.discount} />
+          <Text style={styles.discriptionText}>{product.details}</Text>
+          <View style={styles.buttonWrapper}>
+            <AddToCartButton
+              productId={productId}
+              cost={getActualPrice(product.price, product.discount)}
+              count={product.increaseCount}
+            />
+          </View>
         </View>
-      </View>
-      <View style={styles.wrapper}>
-        <Price price={product.price} discount={product.discount} />
-        <Text style={styles.discriptionText}>Description</Text>
-        <Text>{product.details}</Text>
-        <View style={styles.buttonWrapper}>
-          <AddToCartButton
-            productId={productId}
-            cost={getActualPrice(product.price, product.discount)}
-            count={product.increaseCount}
-          />
-        </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   ) : null;
 }
