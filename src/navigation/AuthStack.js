@@ -12,11 +12,12 @@ export function AuthStack(props) {
       <Stack.Screen
         name="SignInScreen"
         component={SignInScreen}
-        options={{headerShown: false}}
+        options={({headerShown: false}, {headerBackTitleVisible: false})}
       />
       <Stack.Screen
         name="ConfirmationCodeScreen"
         component={ConfirmationCodeScreen}
+        options={{headerBackTitleVisible: false}}
       />
     </Stack.Navigator>
   );

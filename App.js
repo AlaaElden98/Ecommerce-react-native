@@ -19,12 +19,14 @@ function App(props) {
     //AsyncStorage.clear();
     AsyncStorage.getItem(TOKEN_KEY).then((tokenValue) => {
       dispatch(setToken(tokenValue));
-      axios.defaults.headers.Authorization = 'Bearer ' + tokenValue;
-      dispatch(fetchCartItems());
-      AsyncStorage.getItem(USER_KEY).then((user) => {
-        dispatch(setUser(JSON.parse(user)));
-        dispatch(getUserData());
-      });
+      if (tokenValue) {
+        axios.defaults.headers.Authorization = 'Bearer ' + tokenValue;
+        dispatch(fetchCartItems());
+        AsyncStorage.getItem(USER_KEY).then((user) => {
+          dispatch(setUser(JSON.parse(user)));
+          dispatch(getUserData());
+        });
+      }
     });
   }, [token]);
 

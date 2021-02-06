@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, SafeAreaView, ScrollView} from 'react-native';
+import {Text, SafeAreaView, ScrollView} from 'react-native';
 import {Input} from '../../components/Input';
 import {AppButton} from '../../components/AppButton';
 import {addAddress} from '../../redux/actions';
@@ -95,6 +95,7 @@ export function AddAddressScreen(props) {
           onChangeText={highOrderSetInput('building')}
           value={inputs.building || ''}
         />
+        <Text style={styles.headerTitle}>Your previous addresses</Text>
         {user.addresses.map((address) => {
           return <Address address={address} />;
         })}

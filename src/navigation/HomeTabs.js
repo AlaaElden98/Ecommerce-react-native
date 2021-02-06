@@ -43,10 +43,26 @@ export function HomeTabs(props) {
             ),
         };
       }}>
-      <Tabs.Screen name="HomeStack" component={HomeStack} />
-      <Tabs.Screen name="CartStack" component={CartStack} />
-      <Tabs.Screen name="SearchStack" component={SearchStack} />
-      <Tabs.Screen name="AccountStack" component={AccountStack} />
+      <Tabs.Screen
+        name="HomeStack"
+        component={HomeStack}
+        options={{headerBackTitleVisible: false}}
+      />
+      <Tabs.Screen
+        name="CartStack"
+        component={CartStack}
+        options={{headerBackTitleVisible: false}}
+      />
+      <Tabs.Screen
+        name="SearchStack"
+        component={SearchStack}
+        options={{headerBackTitleVisible: false}}
+      />
+      <Tabs.Screen
+        name="AccountStack"
+        component={AccountStack}
+        options={{headerBackTitleVisible: false}}
+      />
     </Tabs.Navigator>
   );
 }
