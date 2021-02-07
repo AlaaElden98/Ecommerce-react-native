@@ -51,6 +51,7 @@ export const signIn = (phone) => {
     axios
       .post('/verify', {phone})
       .then((res) => {
+        console.log('Confirmation Code : ', res.data);
         dispatch(signInSuccess());
       })
       .catch((err) => {
