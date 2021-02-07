@@ -8,7 +8,7 @@ import {useInput} from '../../utils/useInput';
 import {useDispatch, useSelector} from 'react-redux';
 import {signIn} from '../../redux/actions';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
-import {showError} from '../../utils/helperFunctions';
+// import {showError} from '../../utils/helperFunctions';
 function renderIcon() {
   return <Icon name="call-outline" style={styles.icon} />;
 }
@@ -25,9 +25,9 @@ export function SignInScreen(props) {
     navigation.navigate('ConfirmationCodeScreen', {phone: input.value});
   }, [success]);
 
-  useUpdateEffect(() => {
-    showError(failure.errorCode);
-  }, [failure]);
+  // useUpdateEffect(() => {
+  //   showError(failure.errorCode);
+  // }, [failure]);
 
   const doneHandler = () => {
     if (input.isValid) {

@@ -3,8 +3,8 @@ import {Text, View} from 'react-native';
 import {AppButton} from '../AppButton';
 import {useSelector, useDispatch} from 'react-redux';
 import {addToCart, updateCartItem} from '../../redux/actions';
-import {useUpdateEffect} from '../../utils/useUpdateEffect';
-import {showError} from '../../utils/helperFunctions';
+// import {useUpdateEffect} from '../../utils/useUpdateEffect';
+// import {showError} from '../../utils/helperFunctions';
 
 import styles from './styles';
 
@@ -19,10 +19,10 @@ export function AddToCartButton(props) {
   const isAddingToCart = useSelector(
     (state) => state.cart.isAddingProductToCart[productId],
   );
-  const error = useSelector((state) => state.cart.addProductToCartError);
-  useUpdateEffect(() => {
-    showError(error.errorCode);
-  }, [error]);
+  // const error = useSelector((state) => state.cart.addProductToCartError);
+  // useUpdateEffect(() => {
+  //   showError(error.errorCode);
+  // }, [error]);
 
   const increamentQuantityHandler = () => {
     if (cartItemCount === 0) {

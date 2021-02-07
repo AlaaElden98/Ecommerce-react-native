@@ -14,7 +14,7 @@ export function UpdateAccountScreen(props) {
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.auth.changeNameLoading);
   const success = useSelector((state) => state.auth.updateNameSuccess);
-  const error = useSelector((state) => state.auth.changeNameError);
+  // const error = useSelector((state) => state.auth.changeNameError);
   const user = useSelector((state) => state.auth.user);
   const [input, setInput] = React.useState({
     value: user.name || '',
@@ -32,9 +32,9 @@ export function UpdateAccountScreen(props) {
     navigation.goBack();
   }, [success]);
 
-  useUpdateEffect(() => {
-    showError(error.errorCode);
-  }, [error]);
+  // useUpdateEffect(() => {
+  //   showError(error.errorCode);
+  // }, [error]);
 
   return (
     <SafeAreaView style={styles.container}>

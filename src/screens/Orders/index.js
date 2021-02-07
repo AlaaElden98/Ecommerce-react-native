@@ -5,7 +5,7 @@ import {getOrders} from '../../redux/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import {EmptyList} from '../../components/EmptyList';
-import {showError} from '../../utils/helperFunctions';
+// import {showError} from '../../utils/helperFunctions';
 
 import styles from './styles';
 function renderOrder({item}) {
@@ -28,7 +28,7 @@ function keyExtractor(order) {
 
 export function OrdersScreen(props) {
   const dispatch = useDispatch();
-  const error = useSelector((state) => state.auth.getOrdersError);
+  // const error = useSelector((state) => state.auth.getOrdersError);
   const orders = useSelector((state) => state.auth.orders);
 
   const Empty = React.useCallback(
@@ -40,9 +40,9 @@ export function OrdersScreen(props) {
     dispatch(getOrders());
   }, []);
 
-  useUpdateEffect(() => {
-    showError(error.errorCode);
-  }, [error]);
+  // useUpdateEffect(() => {
+  //   showError(error.errorCode);
+  // }, [error]);
 
   return <View style={styles.container}>{renderOrders(orders, Empty)}</View>;
 }

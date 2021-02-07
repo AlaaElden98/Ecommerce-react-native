@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {fetchHomeData} from '../../redux/actions';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import styles from './styles';
-import {showError} from '../../utils/helperFunctions';
+// import {showError} from '../../utils/helperFunctions';
 
 function renderCategory({item}) {
   return <Category category={item} />;
