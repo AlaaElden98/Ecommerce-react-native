@@ -2,6 +2,7 @@ package com.ecommercrncli;
 
 import com.facebook.react.ReactActivity;
 import com.zoontek.rnbootsplash.RNBootSplash; // <- add this necessary import
+import android.os.Bundle;
 
 public class MainActivity extends ReactActivity {
   @Override
