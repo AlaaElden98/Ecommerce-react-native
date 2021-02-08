@@ -27,13 +27,18 @@ The first time you will run the app, you will need to sign-in with a phone numbe
 3. Enter the 4 digit from step 2 and press done
 
 ## License
+
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/AlaaElden98/Ecommerce-react-native/blob/main/LICENSE) file for details
 
-## TODO
+## DONE/TODO
+
+1. TODO
 
 - handle API's requests error
-- add spalsh screen
 - tests
+- add demo video
+
+2. DONE
+
+- add spalsh screen
 - generate APK
-- update README
-- add screenshots and demo
