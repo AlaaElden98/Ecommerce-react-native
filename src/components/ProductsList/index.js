@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, ActivityIndicator} from 'react-native';
 import {Product} from '../Product';
 import {EmptyList} from '../EmptyList';
 function renderProduct({item}) {
