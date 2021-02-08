@@ -51,7 +51,7 @@ export const signIn = (phone) => {
     axios
       .post('/verify', {phone})
       .then((res) => {
-        console.log('Confirmation Code : ', res.data);
+        alert('Confirmation Code : ', res.data);
         dispatch(signInSuccess());
       })
       .catch((err) => {
@@ -67,7 +67,6 @@ export const confirmCode = (phone, code) => {
       .post('/verify/validate', {phone, code})
       .then((res) => {
         dispatch(confirmCodeSuccess());
-        console.log(res.data);
         const {token, userData} = res.data;
         axios.defaults.headers.Authorization = 'Bearer ' + token;
         dispatch(setToken(token));
