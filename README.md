@@ -26,6 +26,10 @@ The first time you will run the app, you will need to sign-in with a phone numbe
 2. Check your console,you will get a message with a 4 digit number,find this log `Confirmation Code : xxxx` .
 3. Enter the 4 digit from step 2 and press done
 
+## APK
+
+You can download the APK from [here](https://drive.google.com/file/d/10fl7lOO3hOkjMA1py96MbmibPeseCGxb/view?usp=sharing)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/AlaaElden98/Ecommerce-react-native/blob/main/LICENSE) file for details
@@ -36,7 +40,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 
 - handle API's requests error
 - tests
-- add demo video
 
 2. DONE
 
