@@ -37,7 +37,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 ## DONE/TODO
 
 1. TODO
-
+- add instabug package to the project
 - handle API's requests error
 - tests
 
