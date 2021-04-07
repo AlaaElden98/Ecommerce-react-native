@@ -6,6 +6,9 @@ E-commerce mobile application developed using react native for both android and 
 - Hooks
 - redux/thunk
 
+## App Screenshots
+
+[Maybe you want to zoom out :sweat_smile:](https://github.com/AlaaElden98/Ecommerce-react-native/issues/2)
 ## Getting started
 
 1. If you have never run a react-native project before on your machine, you need to follow the instructions [here](https://reactnative.dev/docs/environment-setup), otherwise skip this part.
