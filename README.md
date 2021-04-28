@@ -8,7 +8,8 @@ E-commerce mobile application developed using react native for both android and 
 
 ## App Screenshots
 
-[Maybe you want to zoom out :sweat_smile:](https://github.com/AlaaElden98/Ecommerce-react-native/issues/2)
+[Here](https://github.com/AlaaElden98/Ecommerce-react-native/issues/2)
+
 ## Getting started
 
 1. If you have never run a react-native project before on your machine, you need to follow the instructions [here](https://reactnative.dev/docs/environment-setup), otherwise skip this part.
@@ -19,15 +20,15 @@ E-commerce mobile application developed using react native for both android and 
    - `npm install`
    - `npm install npx`
    - `npx react-native link`
-   - `npx react-native start` then `npm run android` or `npm run android`
+   - `npx react-native start` then `npm run android`
 
 ## Sign into the app
 
 The first time you will run the app, you will need to sign-in with a phone number then verify it with a confirmation code,follow the following instructions to see how to do that.
 
-1. Enter a phone number and press done.
-2. Check your console,you will get a message with a 4 digit number,find this log `Confirmation Code : xxxx` .
-3. Enter the 4 digit from step 2 and press done
+1. Enter a valid phone number and press done.
+2. You will see an alert with a 4 digit number : `Confirmation Code : xxxx` .
+3. Enter the 4 digit and press done
 
 ## APK
 
@@ -37,14 +38,10 @@ You can download the APK from [here](https://drive.google.com/file/d/10fl7lOO3hO
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/AlaaElden98/Ecommerce-react-native/blob/main/LICENSE) file for details
 
-## DONE/TODO
+## TODO
 
-1. TODO
-- add instabug package to the project
-- handle API's requests error
-- tests
-
-2. DONE
-
-- add spalsh screen
-- generate APK
+- [x] add spalsh screen
+- [x] generate APK
+- [ ] testing
+- [ ] add instabug package to the project
+- [ ] handle API's requests error
