@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, TextInput, StyleSheet, Text} from 'react-native';
 import {IonIcon} from '../IonIcons';

@@ -84,10 +84,9 @@ export const fetchCategoryProducts = (category) => {
 
           const {lastPage, nextPage} = res.data;
           const page = nextPage > lastPage ? null : nextPage;
-          r.log('page', page);
           dispatch(setCategoryProductsPage(category._id, page));
         })
-        .catch((err) => {});
+        .catch(() => {});
     }
   };
 };

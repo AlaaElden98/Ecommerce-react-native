@@ -6,20 +6,13 @@ import styles from './styles';
 import {useInput} from '../../utils/useInput';
 import {useDispatch, useSelector} from 'react-redux';
 import {confirmCode} from '../../redux/actions';
-import {useUpdateEffect} from '../../utils/useUpdateEffect';
-// import {showError} from '../../utils/helperFunctions';
 
 function ConfirmationCodeScreen(props) {
   const {phone} = props.route.params;
   const [input, updateInput] = useInput('', [{key: 'isConfirmationCode'}]);
   const isLoading = useSelector((state) => state.auth.isConfirmingCode);
-  const failure = useSelector((state) => state.auth.confirmCodeFailure);
 
   const dispatch = useDispatch();
-
-  // useUpdateEffect(() => {
-  //   showError(error.errorCode);
-  // }, [failure]);
 
   const doneHandler = () => {
     if (input.isValid) {

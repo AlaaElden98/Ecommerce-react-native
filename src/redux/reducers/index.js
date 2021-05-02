@@ -15,7 +15,9 @@ const rootReducer = combineReducers({
 const appReducer = (state, action) => {
   if (action.type === CLEAR_REDUX_DATA) {
     return rootReducer(undefined, action);
-  } else return rootReducer(state, action);
+  } else {
+    return rootReducer(state, action);
+  }
 };
 
 export default appReducer;

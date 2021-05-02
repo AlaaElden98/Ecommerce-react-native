@@ -1,18 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import {View, Text, Image, SafeAreaView, ScrollView} from 'react-native';
 import {Price} from '../../components/Price';
 import {AddToCartButton} from '../../components/AddToCartButton';
-import {IonIcon} from '../../components/IonIcons';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchProductById} from '../../redux/actions';
 import {IMAGES_URL} from '../../utils/constants';
-import {cutLongName} from '../../utils/helperFunctions';
 import {getActualPrice} from '../../utils/helperFunctions';
 import styles from './styles';
 
 export function ProductScreen(props) {
   const {productId} = props.route.params;
-  const {navigation} = props;
   const [product, setProduct] = React.useState();
   const dispatch = useDispatch();
   const reduxProduct = useSelector((state) => state.home.product);

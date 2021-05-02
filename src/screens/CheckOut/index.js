@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, SafeAreaView} from 'react-native';
+import {View, Text, SafeAreaView} from 'react-native';
 import {AppButton} from '../../components/AppButton';
 import {CURRENCY} from '../../utils/constants';
 import {Address} from '../../components/Address';

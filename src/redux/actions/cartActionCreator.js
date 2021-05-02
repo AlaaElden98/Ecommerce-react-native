@@ -58,7 +58,7 @@ export const addToCart = (productId, cost, count) => {
       .then((res) => {
         dispatch(fetchCartItems());
       })
-      .catch((err) => {
+      .catch(() => {
         dispatch(addProductToCartError());
       })
       .finally(() => {
@@ -75,7 +75,7 @@ export const updateCartItem = (cartItemId, action, count) => {
   return (dispatch, getState) => {
     dispatch(updateCartItemImmediately(cartItemId, action));
 
-    axios.put('cart', {id: cartItemId, action, count}).catch((err) => {
+    axios.put('cart', {id: cartItemId, action, count}).catch(() => {
       dispatch(fetchCartItems());
       dispatch(addProductToCartError());
     });

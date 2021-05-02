@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, View} from 'react-native';
 import {AppButton} from '../AppButton';
 import {useSelector, useDispatch} from 'react-redux';
 import {addToCart, updateCartItem} from '../../redux/actions';
-// import {useUpdateEffect} from '../../utils/useUpdateEffect';
-// import {showError} from '../../utils/helperFunctions';
 
 import styles from './styles';
 

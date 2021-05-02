@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, Text} from 'react-native';
+import {Image, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {PlatFormTouchable} from '../PlatFormTouchable';
 import {Card} from '../Card';

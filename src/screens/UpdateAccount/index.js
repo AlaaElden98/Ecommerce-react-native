@@ -5,8 +5,6 @@ import {AppButton} from '../../components/AppButton';
 import {updateUserName} from '../../redux/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
-import {showError} from '../../utils/helperFunctions';
-
 import styles from './styles';
 
 export function UpdateAccountScreen(props) {
@@ -31,10 +29,6 @@ export function UpdateAccountScreen(props) {
   useUpdateEffect(() => {
     navigation.goBack();
   }, [success]);
-
-  // useUpdateEffect(() => {
-  //   showError(error.errorCode);
-  // }, [error]);
 
   return (
     <SafeAreaView style={styles.container}>

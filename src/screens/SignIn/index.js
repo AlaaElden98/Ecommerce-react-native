@@ -8,7 +8,7 @@ import {useInput} from '../../utils/useInput';
 import {useDispatch, useSelector} from 'react-redux';
 import {signIn} from '../../redux/actions';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
-// import {showError} from '../../utils/helperFunctions';
+
 function renderIcon() {
   return <Icon name="call-outline" style={styles.icon} />;
 }
@@ -17,7 +17,6 @@ export function SignInScreen(props) {
   const {navigation} = props;
   const isLoading = useSelector((state) => state.auth.isSigningIn);
   const success = useSelector((state) => state.auth.signInSuccess);
-  const failure = useSelector((state) => state.auth.signInFailure);
   const dispatch = useDispatch();
   const [input, updateInput] = useInput('', [{key: 'isPhone'}]);
 

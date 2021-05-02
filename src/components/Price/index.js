@@ -2,8 +2,8 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {getActualPrice} from '../../utils/helperFunctions';
 import {CURRENCY} from '../../utils/constants';
-import styles from './styles'; 
- 
+import styles from './styles';
+
 export function Price(props) {
   const {price, discount} = props;
 

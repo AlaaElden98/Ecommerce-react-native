@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react';
 import {Text, SafeAreaView, FlatList} from 'react-native';
 import {

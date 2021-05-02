@@ -51,10 +51,12 @@ export const signIn = (phone) => {
     axios
       .post('/verify', {phone})
       .then((res) => {
+        // eslint-disable-next-line no-alert
         alert(`Code : ${res.data.code}`);
         dispatch(signInSuccess());
       })
       .catch((err) => {
+        console.log('Sign in error: ', err);
         dispatch(signInFailure(UNEXPECTED_ERROR_CODE));
       });
   };

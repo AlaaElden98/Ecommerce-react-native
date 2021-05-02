@@ -1,5 +1,4 @@
 import {ScaledSheet} from 'react-native-size-matters';
-import {Platform} from 'react-native';
 
 const styles = ScaledSheet.create({
   image: {

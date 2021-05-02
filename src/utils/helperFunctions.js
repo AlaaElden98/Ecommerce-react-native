@@ -20,6 +20,7 @@ export const configureApiRequestBoilerplateActions = () => {
 };
 
 export const showError = (errorCode) => {
+  // eslint-disable-next-line no-alert
   alert(errorCodeMessageMapper[errorCode]);
 };
 

@@ -1,12 +1,11 @@
 import React from 'react';
-import {View, SafeAreaView, ActivityIndicator} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import {Input} from '../../components/Input';
 import {IonIcon} from '../../components/IonIcons';
 import {useDispatch, useSelector} from 'react-redux';
 import {useUpdateEffect} from '../../utils/useUpdateEffect';
 import {ProductsList} from '../../components/ProductsList';
 import {searchForProduct} from '../../redux/actions/searchActionCreator';
-import {EmptyList} from '../../components/EmptyList';
 import styles from './styles';
 
 function renderSearchIcon() {
